@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'principal', loadChildren: './principal/principal.module#PrincipalPageModule' },
   { path: 'registro', loadChildren: './registro/registro.module#RegistroPageModule' },
+  { path: 'add-disp', loadChildren: './add-disp/add-disp.module#AddDispPageModule' },
 ];
 
 @NgModule({
