@@ -1,56 +1,94 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-    Registro
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Registro
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content padding>
+    <ion-icon name="person-add" style="width: 290px; height: 250px" color="primary"></ion-icon>
+    <br>
+    <form #forma="ngForm" (ngSubmit)="register(forma)">
+        <ion-item>
+            <ion-label position="floating">Nombre completo</ion-label>
+            <ion-input type="text" [(ngModel)]="user.name" name="name"
+                       pattern="^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$"
+                       required="required">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.name">
+                <div class="error-message"
+                     *ngIf="forma.controls['name'].hasError(validation.type) && (forma.controls['name'].dirty || forma.controls['name'].touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
 
-  
-    <ion-img src="assets/img/RegisIcon.png"></ion-img>
+        <br>
+        <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="text" [(ngModel)]="user.email" name="email" required="required"
+                       pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message"
+                     *ngIf="forma.controls['email'].hasError(validation.type) && (forma.controls['email'].dirty || forma.controls['email'].touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
 
-<br>
-  <ion-item>
-    <ion-label position="floating">Nombre completo</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-<br>
-  <ion-item>
-    <ion-label position="floating">Correo</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-<br>
-  <ion-item>
-    <ion-label position="floating" >Contraseña</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-<br>
-<ion-item>
-  <ion-label position="floating" >Confirmar contraseña</ion-label>
-  <ion-input type="password"></ion-input>
-</ion-item>
+        <br>
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="user.password"
+                       pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$"
+                       minlength="8"
+                       maxlength="16">
+            </ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message"
+                     *ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
 
-<br>
+        <br>
+        <ion-item>
+            <ion-label position="floating">Confirmar contraseña</ion-label>
+            <ion-input type="password" required="required" name="comfirmPassword"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+                <!--<div class="error-message" *ngIf="(forma.controls['comfirmPassword']['value'] ==! forma.controls['password']['value']) && (forma.controls['comfirmPassword'].dirty || forma.controls['comfirmPassword'].touched)">-->
+                    <!--<ion-icon name="information-circle-outline"></ion-icon> passwords must be the same-->
+                <!--</div>-->
+        </div>
+        <br>
 
-<ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-label>Ciudad</ion-label>
+                <ion-select placeholder="Seleccione una" name="city" [(ngModel)]="user.city">
+                    <ion-select-option>Medellín</ion-select-option>
+                    <ion-select-option>Yarumal</ion-select-option>
+                    <ion-select-option>Santa Rosa</ion-select-option>
+                    <ion-select-option>La Ceja</ion-select-option>
+                    <ion-select-option>Río Negro</ion-select-option>
+                </ion-select>
+            </ion-item>
 
-  <ion-item>
-    <ion-label>Ciudad</ion-label>
-    <ion-select placeholder="Seleccione una">
-      <ion-select-option>Medellín</ion-select-option>
-      <ion-select-option>Yarumal</ion-select-option>
-      <ion-select-option>Santa Rosa</ion-select-option>
-      <ion-select-option>La Ceja</ion-select-option>
-      <ion-select-option>Río Negro</ion-select-option>
-    </ion-select>
-  </ion-item>
+        </ion-list>
 
-</ion-list>
-
-<ion-button color="success" expand="block" routerLink="/home" >REGISTAR</ion-button>
-
+        <ion-button color="success" expand="block" type="submit" >REGISTAR</ion-button>
+    </form>
 </ion-content>

@@ -1,14 +1,5 @@
-<!-- <ion-header>
-  <ion-toolbar>
-
-  </ion-toolbar>
-</ion-header> -->
 
 <ion-content padding>
-
-    <!--<ion-title>-->
-        <!--Inicio de sesión-->
-    <!--</ion-title>-->
     <ion-text color="primary">
         <h2 style="text-align: center">Inicio de sesión</h2>
     </ion-text>
@@ -18,7 +9,7 @@
     <form #forma="ngForm" (ngSubmit)="login(forma)">
         <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" name="email" [(ngModel)]="Usuario.email" #email="ngModel"
+            <ion-input type="text" name="email" [(ngModel)]="Usuario.email"
                        pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
                        required="required">
             </ion-input>
@@ -57,6 +48,6 @@
         <ion-button color="success" expand="block" type="submit" [disabled]="!forma.valid">INICIAR SESIÓN</ion-button>
         <!--routerLink="/principal"-->
         <br>
-        <ion-button color="success" expand="block" type="submit">REGISTRAR</ion-button>
+        <ion-button color="success" expand="block" routerLink="/registro">REGISTRAR</ion-button>
     </form>
 </ion-content>
