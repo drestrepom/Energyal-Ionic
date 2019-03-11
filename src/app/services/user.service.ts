@@ -8,7 +8,8 @@ import {User} from '../interfaces/user';
     providedIn: 'root'
 })
 export class UserService {
-    url = 'http://192.168.0.101:3000/';
+    url = 'https://energyal.herokuapp.com/';
+    // url = 'http://192.168.0.101:3000/';
     user = null;
     constructor(private http: HttpClient) {
     }
