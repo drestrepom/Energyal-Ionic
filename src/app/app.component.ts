@@ -12,6 +12,7 @@ export class AppComponent {
 
 public appMenu =[
   {title: 'Add Disp.', url: '/add-disp', icon: 'list'},
+  {title: 'Home.', url: '/principal', icon: 'list'},
   {title: 'Salir', url: '/home', icon: 'list'}
 ];
 
