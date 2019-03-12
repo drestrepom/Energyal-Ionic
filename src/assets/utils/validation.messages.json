@@ -1,35 +1,35 @@
 {
   "username": [
-    {"type": "required", "message": "Username is required."},
-    {"type": "minlength", "message": "Username must be at least 5 characters long."},
-    {"type": "maxlength", "message": "Username cannot be more than 25 characters long."},
-    {"type": "pattern", "message": "Your username must contain only numbers and letters."},
-    {"type": "validUsername", "message": "Your username has already been taken."}
+    {"type": "required", "message": "El nombre de usuario es requerido."},
+    {"type": "minlength", "message": "El nombre de usuario debe tener al menos 5 caracteres."},
+    {"type": "maxlength", "message": "El nombre de usuario no puede contener mas de 25 caracteres"},
+    {"type": "pattern", "message": "Su nombre de usuario solo puede contener números y letras"},
+    {"type": "validUsername", "message": "Este nombre de usuario ya ha sido tomado."}
   ],
   "name": [
-    {"type": "required", "message": "Name is required."}
+    {"type": "required", "message": "El nombre es requerido."}
   ],
   "lastname": [
     {"type": "required", "message": "Last name is required."}
   ],
   "email": [
-    {"type": "required", "message": "Email is required."},
-    {"type": "pattern", "message": "Please wnter a valid email."}
+    {"type": "required", "message": "El correo es requerido."},
+    {"type": "pattern", "message": "Por favor ingrese un correo válido."}
   ],
   "phone": [
     {"type": "required", "message": "Phone is required."},
     {"type": "validCountryPhone", "message": "The phone is incorrect for the selected country."}
   ],
   "password": [
-    {"type": "required", "message": "Password is required."},
-    {"type": "minlength", "message": "Password must be at least 8 characters long."},
+    {"type": "required", "message": "La contraseña es requerida."},
+    {"type": "minlength", "message": "Su contraseña debe contener al menos 8 caracteres."},
     {"type": "pattern", "message": "Your password must contain at least one uppercase, one lowercase, and one number."}
   ],
   "confirm_password": [
-    {"type": "required", "message": "Confirm password is required."}
+    {"type": "required", "message": "Por favor confirme su contraseña."}
   ],
   "matching_passwords": [
-    {"type": "areEqual", "message": "Password mismatch."}
+    {"type": "areEqual", "message": "La contraseña no coincide."}
   ],
   "terms": [
     {"type": "pattern", "message": "You must accept terms and conditions."}
