@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, NgForm} from '@angular/forms';
+import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {AlertController} from '@ionic/angular';
 import {Route, Router} from '@angular/router';
 import {User} from '../../interfaces/user';
@@ -12,6 +12,7 @@ import {load} from '@angular/core/src/render3';
     styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
+
     constructor(private sUser: UserService, public alertController: AlertController, private router: Router) {
     }
 

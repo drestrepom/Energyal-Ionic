@@ -36,27 +36,25 @@ export class LoginPage implements OnInit {
     // @ts-ignore
     validation_messages = require('../../../assets/utils/validation.messages.json');
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     login(forma: NgForm) {
-        this.presentLoading();
         console.log('value', forma.value);
-        // console.log('formulario Posteado');
-        // console.log('ngForm', forma);
-        // console.log('valor forma', forma.value);
-        // console.log(this.Usuario);
         this.sUser.login({
             email: forma.value.email,
             password: forma.value.password
         }).subscribe(result => {
+            this.loadingController.dismiss();
+            console.log(result);
             if (result.ok) {
-                this.loadingController.dismiss();
                 this.sUser.user = result;
                 console.log('service', this.sUser.user);
                 this.router.navigate(['/principal']);
+            } else {
+                this.loginFailed();
             }
         }, error => {
+            console.log(error);
             this.loadingController.dismiss();
             this.loginFailed();
         });
@@ -75,7 +73,7 @@ export class LoginPage implements OnInit {
         const alert = await this.alertController.create({
             header: 'Error!!',
             subHeader: 'Error al iniciar sesión',
-            message: '<h3 color="danger">usuario o contraseña incorrectos</h3>',
+            message: '<h3>usuario o contraseña incorrectos</h3>',
             buttons: [{
                 text: 'OK'
             }]
