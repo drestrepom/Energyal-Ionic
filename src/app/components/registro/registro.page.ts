@@ -35,7 +35,7 @@ export class RegistroPage implements OnInit {
             buttons: [{
                 text: 'OK',
                 handler: (blah) => {
-                    this.router.navigate(['/home']);
+                    this.router.navigate(['/login']);
                 }
             }]
         });

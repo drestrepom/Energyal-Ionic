@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Importar HttpClientModule
 import {HttpClientModule} from '@angular/common/http';
+import {RegistroPageModule} from './components/registro/registro.module';
+import {RegistroPage} from './components/registro/registro.page';
 
 @NgModule({
     declarations: [AppComponent],
