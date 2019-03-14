@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
             if (result.ok) {
                 this.sUser.user = result;
                 console.log('service', this.sUser.user);
-                this.router.navigate(['/principal']);
+                this.router.navigate(['/home']);
             } else {
                 this.loginFailed();
             }

@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Registro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-icon name="person-add" style="width: 290px; height: 250px" color="primary"></ion-icon>
+  <br>
+  <form [formGroup]="forma" (ngSubmit)="register(forma)">
+    <ion-item>
+      <ion-label position="floating">Nombre completo</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div class="error-message"
+             *ngIf="forma.controls['name'].hasError(validation.type) && (forma.controls['name'].dirty || forma.controls['name'].touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <br>
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message"
+             *ngIf="forma.controls['email'].hasError(validation.type) && (forma.controls['email'].dirty || forma.controls['email'].touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <br>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="password">
+      </ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message"
+             *ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <br>
+    <!--<ion-item>-->
+      <!--<ion-label position="floating">Confirmar contraseña</ion-label>-->
+      <!--<ion-input type="password" required="required" name="comfirmPassword"></ion-input>-->
+    <!--</ion-item>-->
+    <!--<div class="validation-errors">-->
+      <!--&lt;!&ndash;<div class="error-message" *ngIf="(forma.controls['comfirmPassword']['value'] ==! forma.controls['password']['value']) && (forma.controls['comfirmPassword'].dirty || forma.controls['comfirmPassword'].touched)">&ndash;&gt;-->
+      <!--&lt;!&ndash;<ion-icon name="information-circle-outline"></ion-icon> passwords must be the same&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<br>-->
+
+    <ion-list>
+      <ion-item>
+        <ion-label>Ciudad</ion-label>
+        <ion-select placeholder="Seleccione una" formControlName="city">
+          <ion-select-option>Medellín</ion-select-option>
+          <ion-select-option>Yarumal</ion-select-option>
+          <ion-select-option>Santa Rosa</ion-select-option>
+          <ion-select-option>La Ceja</ion-select-option>
+          <ion-select-option>Río Negro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-button color="success" expand="block" type="submit" >REGISTAR</ion-button>
+  </form>
+</ion-content>
