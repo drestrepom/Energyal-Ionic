@@ -11,5 +11,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
-
+   appMenu = [
+    {title: 'Add Disp.', url: '/add-electrodomestic', icon: 'list'},
+    {title: 'Home.', url: '/principal', icon: 'list'},
+    {title: 'Salir', url: '/login', icon: 'list'}
+  ];
 }

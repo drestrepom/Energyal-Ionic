@@ -10,8 +10,7 @@ const routes: Routes = [
         path: 'add-electrodomestic',
         loadChildren: './pages/add-electrodomestic/add-electrodomestic.module#AddElectrodomesticPageModule',
         canActivate: [LoginGuard]
-    },  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
+    },  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' }
 
 ];
 
