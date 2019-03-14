@@ -12,15 +12,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Importar HttpClientModule
 import {HttpClientModule} from '@angular/common/http';
-import { MenuPipe } from './pages/menu.pipe';
-import {MenuPageModule} from './pages/menu/menu.module';
-import {MenuPage} from './pages/menu/menu.page';
+
 
 @NgModule({
     declarations: [
-        AppComponent,
-        MenuPipe,
-        MenuPage
+        AppComponent
     ],
     entryComponents: [
     ],
@@ -39,5 +35,4 @@ import {MenuPage} from './pages/menu/menu.page';
     exports: [
     ]
 })
-export class AppModule {
-}
+export class AppModule {}

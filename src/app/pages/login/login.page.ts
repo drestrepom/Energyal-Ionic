@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
     ngOnInit() {}
 
     login(forma: NgForm) {
+        // this.presentLoading();
         console.log('value', forma.value);
         this.sUser.login({
             email: forma.value.email,
@@ -47,6 +48,7 @@ export class LoginPage implements OnInit {
             this.loadingController.dismiss();
             console.log(result);
             if (result.ok) {
+                this.loadingController.dismiss();
                 this.sUser.user = result;
                 console.log('service', this.sUser.user);
                 this.router.navigate(['/home']);
@@ -62,10 +64,8 @@ export class LoginPage implements OnInit {
     async presentLoading() {
         const loading = await this.loadingController.create({
             message: 'Cargando',
-            duration: 2000
         });
         await loading.present();
-        console.log('Loading dismissed!');
     }
 
     async loginFailed() {
