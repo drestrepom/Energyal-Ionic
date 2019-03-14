@@ -7,7 +7,8 @@
     {"type": "validUsername", "message": "Este nombre de usuario ya ha sido tomado."}
   ],
   "name": [
-    {"type": "required", "message": "El nombre es requerido."}
+    {"type": "required", "message": "El nombre es requerido."},
+    {"type": "pattern", "message": "Ingrese un nombre valido"}
   ],
   "lastname": [
     {"type": "required", "message": "Last name is required."}
