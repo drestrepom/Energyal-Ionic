@@ -1,5 +1,12 @@
-<ion-app>
-       <app-menu></app-menu>
+<app-menu></app-menu>
+<ion-header no-border>
+    <ion-toolbar slot="start">
+        <ion-button (click)="toogleMenu()">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
         <ion-router-outlet id="main"></ion-router-outlet>
-</ion-app>
+</ion-content>
 

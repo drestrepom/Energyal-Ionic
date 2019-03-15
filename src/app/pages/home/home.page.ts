@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MenuController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private menuController: MenuController) {}
    appMenu = [
     {title: 'Add Disp.', url: '/add-electrodomestic', icon: 'list'},
     {title: 'Home.', url: '/principal', icon: 'list'},
@@ -16,4 +17,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
+    toogleMenu() {
+        this.menuController.toggle();
+    }
 }
