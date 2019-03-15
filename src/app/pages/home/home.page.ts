@@ -8,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
-  }
    appMenu = [
     {title: 'Add Disp.', url: '/add-electrodomestic', icon: 'list'},
     {title: 'Home.', url: '/principal', icon: 'list'},
     {title: 'Salir', url: '/login', icon: 'list'}
   ];
+
+  ngOnInit() {
+  }
 }
