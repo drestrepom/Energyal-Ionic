@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   appMenu = [
+    {title: 'Home.', url: 'principal', icon: 'home'},
     {title: 'Add Disp.', url: 'add-electrodomestic', icon: 'list'},
-    {title: 'Addd.', url: 'addd', icon: 'list'},
-    {title: 'Home.', url: 'principal', icon: 'list'},
+    {title: 'Usuario', url: 'user', icon: 'contact'},
     {title: 'Salir', url: '/login', icon: 'list'}
   ];
   constructor() { }
