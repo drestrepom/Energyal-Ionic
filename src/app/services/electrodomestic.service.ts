@@ -13,7 +13,8 @@ export class ElectrodomesticService {
     constructor ( private http: HttpClient, private sUser: UserService ) {
     }
 
-    url = 'http://10.12.19.94:3000/';
+    url = 'http://192.168.0.101:3000/';
+    // url = 'https://energyal.herokuapp.com/';
     user = null;
 
     register(electrodomestic: Electrodomestic): Observable<any> {

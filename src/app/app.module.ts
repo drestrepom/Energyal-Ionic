@@ -18,9 +18,9 @@ import {HttpClientModule} from '@angular/common/http';
     declarations: [
         AppComponent
     ],
-    entryComponents: [
-    ],
-    imports: [BrowserModule,
+    entryComponents: [],
+    imports: [
+        BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
         ReactiveFormsModule,
@@ -32,7 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
     bootstrap: [AppComponent],
-    exports: [
-    ]
+    exports: []
 })
-export class AppModule {}
+export class AppModule {
+}

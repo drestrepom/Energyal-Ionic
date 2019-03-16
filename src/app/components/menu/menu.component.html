@@ -9,20 +9,10 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle auto-hide="flase">
-          <!--*ngFor="let p of appMenu">-->
-          <ion-item [routerLink]="p.url" *ngFor="let p of appMenu" >
+          <ion-item [routerLink]="p.url" *ngFor="let p of appMenu" (click)="selectComponent(p.title)" >
             <ion-icon [name]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>
-          <!--<ion-item routerLink="add-electrodomestic">-->
-            <!--<ion-label>Add Dispositivo</ion-label>-->
-          <!--</ion-item>-->
-          <!--<ion-item routerLink="addd">-->
-            <!--<ion-label>Addd</ion-label>-->
-        <!--</ion-item>-->
-          <!--<ion-item routerLink="/login">-->
-            <!--<ion-label>salir</ion-label>-->
-        <!--</ion-item>-->
         </ion-menu-toggle>
       </ion-list>
     </ion-content>

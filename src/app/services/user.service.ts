@@ -10,8 +10,8 @@ import {Body} from '@angular/http/src/body';
     providedIn: 'root'
 })
 export class UserService {
-    url = 'https://energyal.herokuapp.com/';
-    // url = 'http://10.12.19.94:3000/';
+    // url = 'https://energyal.herokuapp.com/';
+    url = 'http://192.168.0.101:3000/';
     // url = 'http://10.12.19.94:3000/';
     user = null;
 
