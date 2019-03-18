@@ -11,7 +11,7 @@ export class MenuComponent implements OnInit {
     {title: 'Home.', url: 'principal', icon: 'home'},
     {title: 'Add Disp.', url: 'add-electrodomestic', icon: 'list'},
     {title: 'Usuario', url: 'user', icon: 'contact'},
-    {title: 'Salir', url: '/login', icon: 'list'}
+    {title: 'Salir', url: '/login', icon: 'power'}
   ];
   constructor() { }
 
