@@ -12,6 +12,7 @@ import {LoginPageModule} from '../login/login.module';
 import {MenuComponent} from '../../components/menu/menu.component';
 import {UserComponent} from '../../components/user/user.component';
 import {IndexComponent} from '../../components/index/index.component';
+import {UserService} from '../../services/user.service';
 
 const routes: Routes = [
     {

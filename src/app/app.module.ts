@@ -12,6 +12,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Importar HttpClientModule
 import {HttpClientModule} from '@angular/common/http';
+import {LoginGuard} from './guards/login.guard';
+import {UserService} from './services/user.service';
 
 
 @NgModule({
@@ -29,10 +31,14 @@ import {HttpClientModule} from '@angular/common/http';
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        LoginGuard
     ],
     bootstrap: [AppComponent],
     exports: []
 })
 export class AppModule {
+    // static  URL_API = 'https://energyal.herokuapp.com/';
+    static URL_API = 'http://192.168.0.101:3000/';
+    // static URL_API = 'http://10.12.19.94:3000/';
 }

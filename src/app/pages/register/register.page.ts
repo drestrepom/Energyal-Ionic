@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
-import {User} from '../../interfaces/user';
+import {IUser} from '../../interfaces/IUser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -43,7 +43,7 @@ export class RegisterPage implements OnInit {
         });
     }
 
-    user: User = {
+    user: IUser = {
         name: null,
         email: null,
         password: null,
@@ -53,6 +53,7 @@ export class RegisterPage implements OnInit {
     validation_messages = require('../../../assets/utils/validation.messages.json');
 
     ngOnInit() {
+        this.forma.reset();
     }
 
     // emailVerify(control: FormControl): Promise<any> | Observable<any> {
@@ -100,11 +101,9 @@ export class RegisterPage implements OnInit {
 
     async presentLoading() {
         const loading = await this.loadingController.create({
-            message: 'Cargando',
-            duration: 2000
+            message: 'Cargando'
         });
         await loading.present();
-        console.log('Loading dismissed!');
     }
 
     async presentAlertFailed(error) {
