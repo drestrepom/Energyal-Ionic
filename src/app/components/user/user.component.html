@@ -4,24 +4,34 @@
         <ion-icon name="contact" style="width: 290px; height: 250px" color="primary" class="center"></ion-icon>
         <br>
 
-        <ion-icon name="contact" item-left style="width:28px ; height: 28px" color="primary"></ion-icon>
-        <ion-label class="tamaño">Usuario:</ion-label>
         <ion-item>
-            <ion-label class="tamaño">{{myUser.name}}</ion-label>
+            <ion-avatar slot="start">
+                <ion-icon name="contact" item-center style="width:40px ; height: 40px" color="primary"></ion-icon>
+            </ion-avatar>
+            <ion-label class="tamaño">Usuario:
+                <br>
+                <ion-note class="tamaño">{{myUser.name}}</ion-note>
+            </ion-label>
         </ion-item>
 
-
-        <ion-icon name="information-circle" item-left style="width:28px ; height: 28px" color="primary"></ion-icon>
-        <ion-label class="tamaño">Ciudad:</ion-label>
         <ion-item>
-            <ion-label class="tamaño">{{myUser.city}}</ion-label>
+            <ion-avatar slot="start">
+                <ion-icon name="information-circle" item-center style="width:40px ; height: 40px" color="primary"></ion-icon>
+            </ion-avatar>
+            <ion-label class="tamaño">Ciudad:
+                <br>
+                <ion-note class="tamaño">{{myUser.city}}</ion-note>
+            </ion-label>
         </ion-item>
 
-
-        <ion-icon name="at" item-left style="width:28px ; height: 28px" color="primary"></ion-icon>
-        <ion-label class="tamaño">Correo:</ion-label>
         <ion-item>
-            <ion-label class="tamaño">{{myUser.email}}</ion-label>
+            <ion-avatar slot="start">
+                <ion-icon name="at" item-center style="width:40px ; height: 40px" color="primary"></ion-icon>
+            </ion-avatar>
+            <ion-label class="tamaño">Correo:
+                <br>
+                <ion-note class="tamaño">{{myUser.email}}</ion-note>
+            </ion-label>
         </ion-item>
 
     </ion-text>

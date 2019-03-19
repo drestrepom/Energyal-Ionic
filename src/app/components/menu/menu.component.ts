@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
     appMenu = [
         {title: 'Home', url: 'home', icon: 'home'},
         {title: 'Agregar Dispositivo.', url: 'add-electrodomestic', icon: 'add-circle-outline'},
+        {title: 'Info. Electrodomestico', url: 'info-electrod', icon: 'information-circle'},
         {title: 'Usuario', url: 'user', icon: 'contact'},
         {title: 'Salir', url: '/login', icon: 'power'}
     ];
