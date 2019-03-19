@@ -1,11 +1,10 @@
-<app-menu></app-menu>
+<app-menu (conponentSelected)="setHeader($event)"></app-menu>
 <ion-header no-border>
     <ion-toolbar >
-      <ion-buttons slot="start">
-          <ion-button (click)="toogleMenu()">
-              <ion-icon slot="icon-only" name="menu"></ion-icon>
-          </ion-button>
-      </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-menu-button (click)="toggleMenu()"></ion-menu-button>
+        </ion-buttons>
+        <ion-label color="primary">{{title}}</ion-label>
     </ion-toolbar>
 </ion-header>
 <ion-content>

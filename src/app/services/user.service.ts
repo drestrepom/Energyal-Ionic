@@ -1,18 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../interfaces/user';
+import {IUser} from '../interfaces/IUser';
 import {RequestOptions} from '@angular/http';
 import {Body} from '@angular/http/src/body';
+import {AppModule} from '../app.module';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    url = 'https://energyal.herokuapp.com/';
-    // url = 'http://10.12.19.94:3000/';
-    // url = 'http://10.12.19.94:3000/';
+
+    url = AppModule.URL_API;
+
     user = null;
 
     constructor(private http: HttpClient) {
@@ -20,7 +21,11 @@ export class UserService {
 
     login(user): Observable<any> {
         // Establecemos cabeceras
-        return this.http.post(this.url + 'login', user);
+        return this.http.post(this.url + 'user/login', user);
+    }
+
+    getUser() {
+        return this.user;
     }
 
     logOut() {
@@ -33,7 +38,7 @@ export class UserService {
         return this.http.get(this.url + 'user/exists', {params: new HttpParams().set('email', email)});
     }
 
-    register(user: User): Observable<any> {
-        return this.http.post(this.url + 'usuario', user);
+    register(user: IUser): Observable<any> {
+        return this.http.post(this.url + 'user', user);
     }
 }

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User} from '../interfaces/user';
+import {IUser} from '../interfaces/IUser';
 import {UserService} from './user.service';
 import {Electrodomestic} from '../interfaces/electrodomestic';
+import {AppModule} from '../app.module';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ export class ElectrodomesticService {
     constructor ( private http: HttpClient, private sUser: UserService ) {
     }
 
-    url = 'http://10.12.19.94:3000/';
+    url = AppModule.URL_API;
     user = null;
 
     register(electrodomestic: Electrodomestic): Observable<any> {

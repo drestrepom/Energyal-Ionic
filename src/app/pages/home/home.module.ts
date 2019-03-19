@@ -10,15 +10,16 @@ import {AddElectrodomesticComponent} from '../../components/add-electrodomestic/
 
 import {LoginPageModule} from '../login/login.module';
 import {MenuComponent} from '../../components/menu/menu.component';
-import {AdddComponent} from '../../components/addd/addd.component';
 import {UserComponent} from '../../components/user/user.component';
+import {IndexComponent} from '../../components/index/index.component';
+import {UserService} from '../../services/user.service';
 
 const routes: Routes = [
     {
-        path: 'home', component: HomePage, children: [
+        path: '', component: HomePage, children: [
             {path: 'add-electrodomestic', component: AddElectrodomesticComponent},
-            {path: 'addd', component: AdddComponent},
-            {path: 'user', component: UserComponent}
+            {path: 'user', component: UserComponent},
+            {path: 'home', component: IndexComponent}
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
@@ -36,8 +37,8 @@ const routes: Routes = [
         HomePage,
         AddElectrodomesticComponent,
         MenuComponent,
-        AdddComponent,
-        UserComponent
+        UserComponent,
+        IndexComponent
     ],
     exports: [
         MenuComponent

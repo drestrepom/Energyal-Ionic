@@ -9,15 +9,23 @@ import {UserService} from '../services/user.service';
 })
 export class LoginGuard implements CanActivate {
     constructor(private sUser: UserService, private  roter: Router) {
-
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        if (this.sUser.user.ok && this.sUser.user.ok === false) {
-            this.roter.navigate(['/login']);
-            return false;
+        if (this.sUser.user) {
+            console.log('no null');
+            if (this.sUser.user.ok === false) {
+                console.log('inicie sesion');
+                this.roter.navigate(['/login']);
+                return false;
+            } else {
+                return this.sUser.user.ok;
+            }
         } else {
-            return this.sUser.user.ok;
+            console.log('null');
+            this.roter.navigate(['/login']);
         }
+
+
     }
 }
