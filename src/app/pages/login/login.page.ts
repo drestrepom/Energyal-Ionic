@@ -14,7 +14,10 @@ export class LoginPage implements OnInit, OnDestroy {
     // @ts-ignore
     patterns = require('../../../assets/utils/validation.patterns.json');
 
-    constructor(private sUser: UserService, private router: Router, public alertController: AlertController, public loadingController: LoadingController) {
+    constructor(private sUser: UserService,
+                private router: Router,
+                public alertController: AlertController,
+                public loadingController: LoadingController) {
         this.sUser.logOut();
         this.forma = new FormGroup({
             'email': new FormControl('', [
@@ -68,33 +71,13 @@ export class LoginPage implements OnInit, OnDestroy {
         const user = {
             'ok': true,
             'user': {
-                'city': 'medellin',
-                'status': true,
-                '_id': '5c82c8787b6a5045685ab328',
-                'email': 'ccc',
-                'name': 'Henry Castañeda',
-                'password': '$2b$10$CTmtiIXYkFEL81gSvbHRz.SINqhV3u0BCjma5ALvWkaSvtYXxIk0u',
-                'electrodomestics': [
-                    {
-                        'role': 'ADMIN',
-                        '_id': '5c83f628adcb3303185c0c14',
-                        'electrodomestic': {
-                            '_id': '5c83f628adcb3303185c0c12',
-                            'name': 'lampara melo'
-                        }
-                    },
-                    {
-                        'role': 'ADMIN',
-                        '_id': '5c83f628adcb3303185c0c14',
-                        'electrodomestic': {
-                            '_id': '5c83f628adcb3303185c0c12',
-                            'name': 'lampara melo'
-                        }
-                    }
-                ],
-                '__v': 0
+                'city': 'Medellín',
+                '_id': '5c91b4a1be8adf5e6863e296',
+                'email': 'darkhell2241@gmail.com',
+                'name': 'Daniel Amaya',
+                'password': '$2b$10$sBMFRKObrFNxsFZ0sfBM.e1SQNzQOgEqsQhgMXy2fxuT8W.JNjVnq'
             },
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJtZWRlbGxpbiIsInN0YXR1cyI6dHJ1ZSwiX2lkIjoiNWM4MmM4Nzg3YjZhNTA0NTY4NWFiMzI4IiwiZW1haWwiOiJjY2MiLCJuYW1lIjoiSGVucnkgQ2FzdGHDsWVkYSIsInBhc3N3b3JkIjoiJDJiJDEwJENUbXRpSVhZa0ZFTDgxZ1N2YkhSei5TSU5xaFYzdTBCQ2ptYTVBTHZXa2FTdnRZWHhJazB1IiwiZWxlY3Ryb2RvbWVzdGljcyI6W3sicm9sZSI6IkFETUlOIiwiX2lkIjoiNWM4M2Y2MjhhZGNiMzMwMzE4NWMwYzE0IiwiZWxlY3Ryb2RvbWVzdGljIjp7Il9pZCI6IjVjODNmNjI4YWRjYjMzMDMxODVjMGMxMiIsIm5hbWUiOiJsYW1wYXJhIG1lbG8ifX0seyJyb2xlIjoiQURNSU4iLCJfaWQiOiI1YzgzZjYyOGFkY2IzMzAzMTg1YzBjMTQiLCJlbGVjdHJvZG9tZXN0aWMiOnsiX2lkIjoiNWM4M2Y2MjhhZGNiMzMwMzE4NWMwYzEyIiwibmFtZSI6ImxhbXBhcmEgbWVsbyJ9fV0sIl9fdiI6MH0sImlhdCI6MTU1Mjk0ODk2NCwiZXhwIjoxNTUzMTIxNzY0fQ.WWr-cvPbREztXqYVAS5CsGwfkerJtbucNsScoSeaVFI'
+            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJNZWRlbGzDrW4iLCJfaWQiOiI1YzkxYjRhMWJlOGFkZjVlNjg2M2UyOTYiLCJlbWFpbCI6ImRhcmtoZWxsMjI0MUBnbWFpbC5jb20iLCJuYW1lIjoiRGFuaWVsIEFtYXlhIiwicGFzc3dvcmQiOiIkMmIkMTAkc0JNRlJLT2JyRk54c0ZaMHNmQk0uZTFTUU56UU9nRXFzUWhnTVh5MmZ4dVQ4Vy5KTmpWbnEifSwiaWF0IjoxNTUzMTIzNTMwLCJleHAiOjE1NTMxNjY3MzB9.Vcu8i6t6OoZ8xEoy8xblfus00FSy3cg8gCiQpg_UNlM'
         };
         this.sUser.user = user;
         this.router.navigate(['/home']);
@@ -109,7 +92,6 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     async loginFailed() {
-        // console.log(error.error.error.message);
         const alert = await this.alertController.create({
             header: 'Error!!',
             subHeader: 'Error al iniciar sesión',

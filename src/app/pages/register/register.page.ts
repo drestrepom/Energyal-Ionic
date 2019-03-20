@@ -109,29 +109,6 @@ export class RegisterPage implements OnInit {
         await alert.present();
     }
 
-    async presentAlertOk() {
-        const alert = await this.alertController.create({
-            header: 'Alert',
-            subHeader: 'Subtitle',
-            message: 'Registro exitoso',
-            buttons: [{
-                text: 'OK',
-                handler: (blah) => {
-                    this.router.navigate(['/login']);
-                }
-            }]
-        });
-
-        await alert.present();
-    }
-
-    // async presentLoading() {
-    //     const loading = await this.loadingController.create({
-    //         message: 'Cargando'
-    //     });
-    //     await loading.present();
-    // }
-
     async presentAlertFailed(error) {
         console.log(error.error.error.message);
         const alert = await this.alertController.create({

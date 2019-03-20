@@ -4,11 +4,12 @@ import {AlertController, LoadingController, ToastController} from '@ionic/angula
 import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IElectrodomestic} from '../../interfaces/electrodomestic';
+import {Alerts} from '../../../utils/alerts';
 
 @Component({
     selector: 'app-add-electrodomestic',
     templateUrl: './add-electrodomestic.component.html',
-    styleUrls: ['./add-electrodomestic.component.scss'],
+    styles: []
 })
 export class AddElectrodomesticComponent implements OnInit {
 
@@ -16,7 +17,8 @@ export class AddElectrodomesticComponent implements OnInit {
                 public alertController: AlertController,
                 public loadingController: LoadingController,
                 private sElectrodomestic: ElectrodomesticService,
-                private toastController: ToastController) {
+                private toastController: ToastController,
+                private alerts: Alerts) {
     }
 
     forma: FormGroup;
@@ -56,65 +58,52 @@ export class AddElectrodomesticComponent implements OnInit {
     }
 
     register() {
+        if (this.forma.invalid) {
+            this.presentAlertDanger();
+            return;
+        }
+        this.alerts.presentLoading();
         const electrodomestic: IElectrodomestic = this.forma.value;
-        this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
-            this.loadingController.dismiss();
-            this.presentToast();
+            this.alerts.coloseAlert();
+            this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
         }, error1 => {
-            this.loadingController.dismiss();
-            this.presentAlertFailed(error1);
+            this.alerts.coloseAlert();
+            let alert = '';
+            if (typeof error1.error.error.errors !== 'undefined') {
+                alert = error1.error.error.errors.serial.message;
+            } else if (typeof error1.error.error !== 'undefined') {
+                alert = error1.error.error;
+            } else {
+                alert = 'no se ha encontrado';
+            }
+            console.log(alert);
+            this.presentAlertFailed(alert);
         });
     }
 
-    async presentLoading() {
-        const loading = await this.loadingController.create({
-            message: 'Cargando'
-        });
-        await loading.present();
-
-        const {role, data} = await loading.onDidDismiss();
-
-        console.log('Loading dismissed!');
-    }
-
-    async presentAlertOk() {
+    async presentAlertDanger() {
         const alert = await this.alertController.create({
-            header: 'Alert',
-            subHeader: 'Subtitle',
-            message: 'Registro exitoso',
-            buttons: [{
-                text: 'OK',
-                handler: (blah) => {
-                    this.router.navigate(['/home']);
-                }
-            }]
+            header: 'Alerta',
+            message: 'Por favor complete todos los campos correctamente',
+            buttons: ['Aceptar']
         });
 
         await alert.present();
     }
 
     async presentAlertFailed(error) {
-        console.log(error);
         const alert = await this.alertController.create({
             header: 'Alerta',
             subHeader: 'Registro Fallido',
-            message: error.error.error.message,
+            message: error,
             buttons: [{
                 text: 'OK'
             }]
         });
         await alert.present();
-    }
-
-    async presentToast() {
-        const toast = await this.toastController.create({
-            message: 'Tu electrodoméstico ha sido registrado correctamente',
-            duration: 2000
-        });
-        toast.present();
     }
 
 }
