@@ -101,10 +101,6 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     async presentLoading() {
-        // const loading = await this.loadingController.create({
-        //     message: 'Cargando'
-        // });
-        // await loading.present();
         const alert = await this.alertController.create({
             message: '<ion-spinner color="primary"></ion-spinner> Cargando...'
         });

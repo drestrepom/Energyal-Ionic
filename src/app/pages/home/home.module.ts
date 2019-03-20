@@ -14,13 +14,16 @@ import {UserComponent} from '../../components/user/user.component';
 import {IndexComponent} from '../../components/index/index.component';
 import {UserService} from '../../services/user.service';
 import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctrod.component';
+import {ElectrodomesticService} from '../../services/electrodomestic.service';
+import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
 
 const routes: Routes = [
     {
         path: '', component: HomePage, children: [
             {path: 'add-electrodomestic', component: AddElectrodomesticComponent},
             {path: 'user', component: UserComponent},
-            {path: 'info-electrod', component: InfoElctrodComponent},
+            {path: 'info-electrod/:id', component: InfoElctrodComponent},
+            {path: 'electrodomestics', component: ElectrodomesticsComponent},
             {path: 'home', component: IndexComponent}
         ]
     },
@@ -41,7 +44,8 @@ const routes: Routes = [
         MenuComponent,
         UserComponent,
         IndexComponent,
-        InfoElctrodComponent
+        InfoElctrodComponent,
+        ElectrodomesticsComponent
     ],
     exports: [
         MenuComponent

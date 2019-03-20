@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AlertController, LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController, ToastController} from '@ionic/angular';
 import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Electrodomestic} from '../../interfaces/electrodomestic';
+import {IElectrodomestic} from '../../interfaces/electrodomestic';
 
 @Component({
     selector: 'app-add-electrodomestic',
@@ -12,10 +12,27 @@ import {Electrodomestic} from '../../interfaces/electrodomestic';
 })
 export class AddElectrodomesticComponent implements OnInit {
 
-    constructor(private router: Router, public alertController: AlertController, public loadingController: LoadingController, private sElectrodomestic: ElectrodomesticService) {
+    constructor(private router: Router,
+                public alertController: AlertController,
+                public loadingController: LoadingController,
+                private sElectrodomestic: ElectrodomesticService,
+                private toastController: ToastController) {
     }
 
     forma: FormGroup;
+    categorias = [
+        'televisor',
+        'video juegos',
+        'computador',
+        'estufa',
+        'horno',
+        'lavadora',
+        'aire acondicionado',
+        'ventilador',
+        'microondas',
+        'secador de pelo',
+        'lámpara',
+    ];
 
     ngOnInit() {
         this.forma = new FormGroup({
@@ -39,13 +56,13 @@ export class AddElectrodomesticComponent implements OnInit {
     }
 
     register() {
-        const electrodomestic: Electrodomestic = this.forma.value;
+        const electrodomestic: IElectrodomestic = this.forma.value;
         this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
             this.loadingController.dismiss();
-            this.presentAlertOk();
+            this.presentToast();
         }, error1 => {
             this.loadingController.dismiss();
             this.presentAlertFailed(error1);
@@ -54,8 +71,7 @@ export class AddElectrodomesticComponent implements OnInit {
 
     async presentLoading() {
         const loading = await this.loadingController.create({
-            message: 'Cargando',
-            duration: 2000
+            message: 'Cargando'
         });
         await loading.present();
 
@@ -91,6 +107,14 @@ export class AddElectrodomesticComponent implements OnInit {
             }]
         });
         await alert.present();
+    }
+
+    async presentToast() {
+        const toast = await this.toastController.create({
+            message: 'Tu electrodoméstico ha sido registrado correctamente',
+            duration: 2000
+        });
+        toast.present();
     }
 
 }

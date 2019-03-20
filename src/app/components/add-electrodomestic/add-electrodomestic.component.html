@@ -28,10 +28,7 @@
       <ion-item>
         <ion-label>Categoría</ion-label>
         <ion-select placeholder="Seleccione una" formControlName="category">
-          <ion-select-option>Cocina</ion-select-option>
-          <ion-select-option>Sala</ion-select-option>
-          <ion-select-option>Habitación</ion-select-option>
-          <ion-select-option>Otro</ion-select-option>
+          <ion-select-option  *ngFor="let item of categorias">{{item}}</ion-select-option>
         </ion-select>
       </ion-item>
 

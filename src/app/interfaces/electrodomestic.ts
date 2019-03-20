@@ -1,7 +1,7 @@
-export interface Electrodomestic {
-    serial: String;
-    name: String;
-    category: String;
-    voltage: Number;
-    meter: String;
+export interface IElectrodomestic {
+    serial?: String;
+    name?: String;
+    category?: String;
+    voltage?: Number;
+    meter?: String;
 }

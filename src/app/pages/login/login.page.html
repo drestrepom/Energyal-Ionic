@@ -28,19 +28,20 @@
       <ion-input type="password" formControlName="password">
       </ion-input>
     </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.password">
-        <div class="error-message"
-             *ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">
-          <ion-icon name="information-circle-outline"></ion-icon>
-          {{ validation.message }}
-        </div>
-      </ng-container>
-    </div>
+    <!--<div class="validation-errors">-->
+      <!--<ng-container *ngFor="let validation of validation_messages.password">-->
+        <!--<div class="error-message"-->
+             <!--*ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">-->
+          <!--<ion-icon name="information-circle-outline"></ion-icon>-->
+          <!--{{ validation.message }}-->
+        <!--</div>-->
+      <!--</ng-container>-->
+    <!--</div>-->
 
     <br>
-    <ion-button color="success" expand="block" type="submit" [disabled]="!forma.valid">INICIAR SESIÓN</ion-button>
+    <ion-button color="success" expand="block" type="submit" >INICIAR SESIÓN</ion-button>
     <!--routerLink="/principal"-->
+    <!--[disabled]="!forma.valid"-->
     <br>
     <ion-button color="success" expand="block" routerLink="/register">REGISTRAR</ion-button>
 

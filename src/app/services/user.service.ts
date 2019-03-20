@@ -41,4 +41,17 @@ export class UserService {
     register(user: IUser): Observable<any> {
         return this.http.post(this.url + 'user', user);
     }
+
+    getElectrodomestic(): Observable<any> {
+        console.log('user id: ', this.user.user._id);
+        return this.http.get(this.url + `user/electrodomestics/${this.user.user._id}`);
+    }
+
+    async challengPassword(newPassword) {
+        console.log(this.user);
+        return await this.http.put(this.url + 'user', {id: this.user.user._id, password: newPassword}).subscribe(value => {
+            console.log(value);
+            return true;
+        });
+    }
 }
