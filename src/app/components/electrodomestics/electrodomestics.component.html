@@ -1,0 +1,9 @@
+
+<ion-content padding>
+  <ion-virtual-scroll [items]="electrodomestics" >
+      <ion-item *virtualItem="let item" (click)="pushMoreInfo(item.electrodomestic._id)">
+        {{ item.electrodomestic.name }}
+      </ion-item>
+  </ion-virtual-scroll>
+</ion-content>
+
