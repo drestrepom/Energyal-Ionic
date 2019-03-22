@@ -5,6 +5,7 @@ import {IUser} from '../interfaces/IUser';
 import {UserService} from './user.service';
 import {IElectrodomestic} from '../interfaces/electrodomestic';
 import {AppModule} from '../app.module';
+import {URL_API} from '../../config/config';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class ElectrodomesticService {
     constructor(private http: HttpClient, private sUser: UserService) {
     }
 
-    url = AppModule.URL_API;
+    url = URL_API;
     user = null;
 
     register(electrodomestic: IElectrodomestic): Observable<any> {

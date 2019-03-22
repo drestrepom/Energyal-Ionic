@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import {AlertController, LoadingController} from '@ionic/angular';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit, OnDestroy {
     constructor(private sUser: UserService,
                 private router: Router,
                 public alertController: AlertController,
-                public loadingController: LoadingController) {
+                public loadingController: LoadingController,
+                private soketService: SocketService) {
         this.sUser.logOut();
         this.forma = new FormGroup({
             'email': new FormControl('', [
@@ -68,6 +70,7 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     loginDesarrollo() {
+        this.soketService.getSaludo('jejejeje');
         const user = {
             'ok': true,
             'user': {

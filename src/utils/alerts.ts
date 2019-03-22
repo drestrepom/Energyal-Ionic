@@ -9,10 +9,11 @@ export class Alerts {
                 private alertController: AlertController) {
     }
 
-    async presentToast(message: string) {
+    // @ts-ignore
+    async presentToast(message: string, duration ? = 2000) {
         const toast = await this.toastController.create({
             message,
-            duration: 2000
+            duration
         });
         toast.present();
     }
@@ -23,6 +24,16 @@ export class Alerts {
             animated: true
         });
         await loading.present();
+    }
+
+    async presentAlertDanger() {
+        const alert = await this.alertController.create({
+            header: 'Alerta',
+            message: 'Por favor complete todos los campos correctamente',
+            buttons: ['Aceptar']
+        });
+
+        await alert.present();
     }
 
     coloseAlert() {

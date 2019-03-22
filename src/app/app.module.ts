@@ -14,6 +14,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginGuard} from './guards/login.guard';
 import {UserService} from './services/user.service';
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+import {URL_API} from '../config/config';
+import {ChartsModule} from 'ng2-charts';
+
+const config: SocketIoConfig = {url: URL_API, options: {}};
 
 
 @NgModule({
@@ -27,7 +32,9 @@ import {UserService} from './services/user.service';
         AppRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        HttpClientModule],
+        HttpClientModule,
+        SocketIoModule.forRoot(config),
+        ChartsModule],
     providers: [
         StatusBar,
         SplashScreen,

@@ -16,6 +16,7 @@ import {UserService} from '../../services/user.service';
 import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctrod.component';
 import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
+import {ChartsModule} from 'ng2-charts';
 
 const routes: Routes = [
     {
@@ -37,6 +38,7 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         ReactiveFormsModule,
+        ChartsModule
     ],
     declarations: [
         HomePage,

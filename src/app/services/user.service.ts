@@ -8,6 +8,7 @@ import {Body} from '@angular/http/src/body';
 import * as emailExistence from 'email-existence';
 import {AppModule} from '../app.module';
 import {FormControl} from '@angular/forms';
+import {URL_API} from '../../config/config';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ import {FormControl} from '@angular/forms';
 })
 export class UserService {
 
-    url = AppModule.URL_API;
+    url = URL_API;
 
     user = null;
 
@@ -36,7 +37,7 @@ export class UserService {
     }
 
     exists(control: FormControl) {
-        const  that = this;
+        const that = this;
         console.log('cuerpo', control.value);
         return that.http.get(this.url + `user/${control.value}`);
     }
@@ -50,11 +51,12 @@ export class UserService {
         return this.http.get(this.url + `user/electrodomestics/${this.user.user._id}`);
     }
 
-    async challengPassword(newPassword) {
+    async challengPassword(oldPassword, newPassword) {
         console.log(this.user);
         return await this.http.put(this.url + 'user', {
             id: this.user.user._id,
-            password: newPassword
+            newPassword,
+            oldPassword
         }).subscribe(value => {
             console.log(value);
             return true;

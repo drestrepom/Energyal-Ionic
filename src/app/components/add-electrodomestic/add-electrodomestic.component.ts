@@ -59,13 +59,11 @@ export class AddElectrodomesticComponent implements OnInit {
 
     register() {
         if (this.forma.invalid) {
-            this.presentAlertDanger();
+            this.alerts.presentAlertDanger();
             return;
         }
         this.alerts.presentLoading();
         const electrodomestic: IElectrodomestic = this.forma.value;
-        console.log('forma', this.forma.value);
-        console.log('electrodomestic', electrodomestic);
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
             this.alerts.coloseAlert();
             this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
@@ -79,19 +77,8 @@ export class AddElectrodomesticComponent implements OnInit {
             } else {
                 alert = 'no se ha encontrado';
             }
-            console.log(alert);
             this.presentAlertFailed(alert);
         });
-    }
-
-    async presentAlertDanger() {
-        const alert = await this.alertController.create({
-            header: 'Alerta',
-            message: 'Por favor complete todos los campos correctamente',
-            buttons: ['Aceptar']
-        });
-
-        await alert.present();
     }
 
     async presentAlertFailed(error) {
