@@ -9,6 +9,7 @@ import * as emailExistence from 'email-existence';
 import {AppModule} from '../app.module';
 import {FormControl} from '@angular/forms';
 import {URL_API} from '../../config/config';
+import {SocketService} from './socket.service';
 
 
 @Injectable({
@@ -20,12 +21,16 @@ export class UserService {
 
     user = null;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private socketService: SocketService) {
     }
 
     login(user): Observable<any> {
         // Establecemos cabeceras
-        return this.http.post(this.url + 'user/login', user);
+        const logInfo = this.http.post(this.url + 'user/login', user);
+        logInfo.subscribe(value => {
+            this.socketService.sendInfo(value['user']._id);
+        });
+        return logInfo;
     }
 
     getUser() {
