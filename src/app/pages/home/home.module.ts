@@ -25,7 +25,8 @@ const routes: Routes = [
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
-            {path: 'home', component: IndexComponent}
+            {path: 'home', component: IndexComponent},
+            { path: 'stats', loadChildren: './pages/stats/stats.module#StatsPageModule' }
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
