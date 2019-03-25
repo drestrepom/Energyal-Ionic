@@ -58,7 +58,7 @@ export class LoginPage implements OnInit, OnDestroy {
             if (result.ok) {
                 this.sUser.user = result;
                 this.forma.reset();
-                this.router.navigate(['/home']);
+                this.router.navigate(['/home/home']);
             } else {
                 this.loginFailed();
             }

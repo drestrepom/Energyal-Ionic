@@ -17,16 +17,17 @@ import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctr
 import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
 import {ChartsModule} from 'ng2-charts';
+import {StatsPageModule} from '../stats/stats.module';
 
 const routes: Routes = [
     {
-        path: '', component: HomePage, children: [
+        path: 'home', component: HomePage, children: [
             {path: 'add-electrodomestic', component: AddElectrodomesticComponent},
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
             {path: 'home', component: IndexComponent},
-            { path: 'stats', loadChildren: './pages/stats/stats.module#StatsPageModule' }
+            { path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule' }
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
@@ -39,7 +40,8 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         ReactiveFormsModule,
-        ChartsModule
+        ChartsModule,
+        StatsPageModule
     ],
     declarations: [
         HomePage,

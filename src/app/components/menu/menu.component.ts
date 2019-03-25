@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
         {title: 'Agregar Dispositivo.', url: 'add-electrodomestic', icon: 'add-circle-outline'},
         // {title: 'Info. Electrodomestico', url: 'info-electrod', icon: 'information-circle'},
         {title: 'Usuario', url: 'user', icon: 'contact'},
-        {title: 'Estadisticas', url: 'stats', icon: 'stats'},
+        {title: 'Estadisticas', url: 'stats/day', icon: 'stats'},
         {title: 'Electrodomésticos', url: 'electrodomestics', icon: 'list'},
         {title: 'Salir', url: '/login', icon: 'power'}
     ];

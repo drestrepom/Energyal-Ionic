@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>stats</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
 
-<ion-content padding>
-<ion-router-outlet></ion-router-outlet>
-</ion-content>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="day">
+      <ion-icon name="flash"></ion-icon>
+      <ion-label>Tab One</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="week">
+      <ion-icon name="apps"></ion-icon>
+      <ion-label>Tab Two</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="month">
+      <ion-icon name="send"></ion-icon>
+      <ion-label>Tab Three</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>
