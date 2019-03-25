@@ -7,14 +7,11 @@ import {IonicModule} from '@ionic/angular';
 
 import {HomePage} from './home.page';
 import {AddElectrodomesticComponent} from '../../components/add-electrodomestic/add-electrodomestic.component';
-
-import {LoginPageModule} from '../login/login.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MenuComponent} from '../../components/menu/menu.component';
 import {UserComponent} from '../../components/user/user.component';
 import {IndexComponent} from '../../components/index/index.component';
-import {UserService} from '../../services/user.service';
 import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctrod.component';
-import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
 import {ChartsModule} from 'ng2-charts';
 import {StatsPageModule} from '../stats/stats.module';
@@ -41,7 +38,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ReactiveFormsModule,
         ChartsModule,
-        StatsPageModule
+        StatsPageModule,
+        NgxChartsModule
     ],
     declarations: [
         HomePage,

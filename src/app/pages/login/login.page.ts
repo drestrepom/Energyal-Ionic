@@ -74,16 +74,16 @@ export class LoginPage implements OnInit, OnDestroy {
         const user = {
             'ok': true,
             'user': {
-                'city': 'Medellín',
-                '_id': '5c91b4a1be8adf5e6863e296',
-                'email': 'darkhell2241@gmail.com',
-                'name': 'Daniel Amaya',
-                'password': '$2b$10$sBMFRKObrFNxsFZ0sfBM.e1SQNzQOgEqsQhgMXy2fxuT8W.JNjVnq'
+                'city': 'Yarumal',
+                '_id': '5c96d0a3b044e21cc8b1c893',
+                'name': 'Diego Restrepo',
+                'email': 'restrepomesadiego@gmail.com',
+                'password': '$2b$10$8.p83J4e18KdrcvOOLgfY.ov6Tme46mD7ml9uIn5DzZ5QLnUcyDny'
             },
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJNZWRlbGzDrW4iLCJfaWQiOiI1YzkxYjRhMWJlOGFkZjVlNjg2M2UyOTYiLCJlbWFpbCI6ImRhcmtoZWxsMjI0MUBnbWFpbC5jb20iLCJuYW1lIjoiRGFuaWVsIEFtYXlhIiwicGFzc3dvcmQiOiIkMmIkMTAkc0JNRlJLT2JyRk54c0ZaMHNmQk0uZTFTUU56UU9nRXFzUWhnTVh5MmZ4dVQ4Vy5KTmpWbnEifSwiaWF0IjoxNTUzMTIzNTMwLCJleHAiOjE1NTMxNjY3MzB9.Vcu8i6t6OoZ8xEoy8xblfus00FSy3cg8gCiQpg_UNlM'
+            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJZYXJ1bWFsIiwiX2lkIjoiNWM5NmQwYTNiMDQ0ZTIxY2M4YjFjODkzIiwibmFtZSI6IkRpZWdvIFJlc3RyZXBvIiwiZW1haWwiOiJyZXN0cmVwb21lc2FkaWVnb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ4LnA4M0o0ZTE4S2RyY3ZPT0xnZlkub3Y2VG1lNDZtRDdtbDl1SW41RHpaNVFMblVjeURueSJ9LCJpYXQiOjE1NTM1NDg4NDUsImV4cCI6MTU1MzU5MjA0NX0.YXpJyBIK6g5q52FHSTpbISezPwHDQjpgh5Wce60ANbY'
         };
         this.sUser.user = user;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/home']);
     }
 
     async presentLoading() {

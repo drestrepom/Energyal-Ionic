@@ -31,6 +31,6 @@ export class ElectrodomesticsComponent implements OnInit {
     }
 
     pushMoreInfo(id) {
-        this.router.navigate(['home/info-electrod/', id]);
+        this.router.navigate(['home/home/info-electrod/', id]);
     }
 }

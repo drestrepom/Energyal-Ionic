@@ -13,23 +13,24 @@ import {EventListener} from '@angular/core/src/debug/debug_node';
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss'],
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent {
 // @ts-ignore
     constructor(private  socketService: SocketService, private alerts: Alerts) {
-        this.socketService.myEmitter.subscribe(value => {
-            console.log(value);
-            this.data.shift();
-            this.data.push(value);
-            alerts.presentToast(value);
-            console.log(this.data);
+        this.socketService.myEmitter.subscribe((value: number) => {
+            const dates = [...this.lineChartData[0].data];
+            dates.push(value);
+            dates.shift();
+            this.lineChartLabels.push(new Date().toLocaleTimeString());
+            this.lineChartLabels.shift();
+            const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
+            // @ts-ignore
+            lineChartData[0] = {label: this.lineChartData[0].label, data: dates};
+            this.lineChartData = lineChartData;
         });
     }
 
-    data = [65, 59, 80, 81, 56, 55, 40];
     public lineChartData: ChartDataSets[] = [
-        {data: this.data, label: 'Series A'},
-//     data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-// { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }    {
+        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
     ];
     public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
     public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -98,14 +99,10 @@ export class IndexComponent implements OnInit {
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         }
     ];
-    public lineChartLegend = true;
+    public lineChartLegend = false;
     public lineChartType = 'line';
-    public lineChartPlugins = [pluginAnnotations];
 
     @ViewChild(BaseChartDirective) chart: BaseChartDirective;
-
-    ngOnInit() {
-    }
 
     public randomize(): void {
         const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
@@ -132,3 +129,4 @@ export class IndexComponent implements OnInit {
         this.chart.hideDataset(1, !isHidden);
     }
 }
+
