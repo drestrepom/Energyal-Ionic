@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { StatsPage } from './stats.page';
 import {DayComponent} from './day/day.component';
-import {WeekComponent} from './week/week.component';
-import {MonthComponent} from './month/month.component';
 
 const routes: Routes = [
   {
     path: '', children: [
       {path: 'day', children: [ {path: '', component: DayComponent}]},
-      {path: 'week', children: [ {path: '', component: WeekComponent}]},
-      {path: 'month', children: [ {path: '', component: MonthComponent}]},
+      {path: 'week', children: [ {path: '', component: DayComponent}]},
+      {path: 'month', children: [ {path: '', component: DayComponent}]},
     ],
     component: StatsPage
   }
@@ -28,6 +26,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [StatsPage, DayComponent, WeekComponent, MonthComponent]
+  declarations: [StatsPage]
 })
 export class StatsPageModule {}
