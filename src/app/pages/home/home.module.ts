@@ -38,7 +38,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ReactiveFormsModule,
         ChartsModule,
-        StatsPageModule,
         NgxChartsModule
     ],
     declarations: [
