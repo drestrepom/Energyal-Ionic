@@ -15,6 +15,7 @@ import {LoginGuard} from './guards/login.guard';
 import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 import {URL_API} from '../config/config';
 import {ChartsModule} from 'ng2-charts';
+import {StatsService} from './services/stats.service';
 
 const config: SocketIoConfig = {url: URL_API, options: {}};
 
@@ -37,7 +38,8 @@ const config: SocketIoConfig = {url: URL_API, options: {}};
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        LoginGuard
+        LoginGuard,
+        StatsService
     ],
     bootstrap: [AppComponent],
     exports: []

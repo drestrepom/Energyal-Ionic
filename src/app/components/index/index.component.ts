@@ -12,9 +12,23 @@ import {Alerts} from '../../../utils/alerts';
 })
 export class IndexComponent {
 // @ts-ignore
+    active;
+
     constructor(private  socketService: SocketService, private alerts: Alerts) {
-        this.socketService.myEmitter.subscribe((value: number) => {
+        this.active = true;
+        this.socketService.myEmitter.subscribe((value) => {
+            if (this.active) {
+                this.alerts.presentToast(((value * 1000)).toString() + 'W');
+            }
         });
+    }
+
+    ionViewWillLeave() {
+        this.active = false;
+    }
+
+    ionViewWillEnter() {
+        this.active = true;
     }
 
     datasets: any[] = [{
@@ -34,7 +48,6 @@ export class IndexComponent {
                 realtime: {
                     onRefresh: function (chart: any) {
                         chart.data.datasets.forEach(function (dataset: any) {
-                            console.log('new: ');
                             dataset.data.push({
                                 x: Date.now(),
                                 y: Math.random()
@@ -48,7 +61,7 @@ export class IndexComponent {
     };
 
     newRandom() {
-       return Math.random();
+        return Math.random();
     }
 }
 

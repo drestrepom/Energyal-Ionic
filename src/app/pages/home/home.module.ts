@@ -18,12 +18,12 @@ import {StatsPageModule} from '../stats/stats.module';
 
 const routes: Routes = [
     {
-        path: 'home', component: HomePage, children: [
+        path: '', component: HomePage, children: [
             {path: 'add-electrodomestic', component: AddElectrodomesticComponent},
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
-            {path: 'home', component: IndexComponent},
+            {path: 'index', component: IndexComponent},
             { path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule' }
         ]
     },
