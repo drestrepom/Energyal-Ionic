@@ -6,7 +6,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IElectrodomestic} from '../../interfaces/electrodomestic';
 import {Alerts} from '../../../utils/alerts';
 
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import {BarcodeScanner} from '@ionic-native/barcode-scanner/ngx';
 
 
 @Component({
@@ -21,11 +21,8 @@ export class AddElectrodomesticComponent implements OnInit {
                 public loadingController: LoadingController,
                 private sElectrodomestic: ElectrodomesticService,
                 private toastController: ToastController,
-<<<<<<< HEAD
-                private barcodeScanner: BarcodeScanner) {
-=======
+                private barcodeScanner: BarcodeScanner,
                 private alerts: Alerts) {
->>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
     }
 
     forma: FormGroup;
@@ -71,12 +68,9 @@ export class AddElectrodomesticComponent implements OnInit {
         }
         this.alerts.presentLoading();
         const electrodomestic: IElectrodomestic = this.forma.value;
-<<<<<<< HEAD
         // this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
-=======
->>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
             this.alerts.coloseAlert();
             this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
@@ -106,23 +100,13 @@ export class AddElectrodomesticComponent implements OnInit {
         await alert.present();
     }
 
-<<<<<<< HEAD
-    async presentToast() {
-        const toast = await this.toastController.create({
-            message: 'Tu electrodoméstico ha sido registrado correctamente',
-            duration: 2000
-        });
-        toast.present();
-    }
-
-    scan() {
+    scan(field) {
         this.barcodeScanner.scan().then(barcodeData => {
-            console.log('Barcode data', barcodeData);
-           }).catch(err => {
-               console.log('Error', err);
-           });
+            // console.log('Barcode data', barcodeData);
+            // this.alerts.presentToast(barcodeData.text, 3000);
+            this.forma.controls[field].setValue(barcodeData.text);
+        }).catch(err => {
+            console.log('Error', err);
+        });
     }
-
-=======
->>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
 }

@@ -1,45 +1,53 @@
-
 <ion-content padding>
-  <div class="ion-text-center">
-    <ion-icon name="add-circle-outline" style="width: 290px; height: 250px; " color="success"></ion-icon>
-  </div>
-  <form [formGroup]="forma" (ngSubmit)="register()">
-    <ion-item>
-      <ion-label position="floating">Serial del electrodoméstico</ion-label>
-      <ion-input formControlName="serial"></ion-input>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-label position="floating">Nombre del electrodoméstico</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
-    </ion-item>
+    <div class="ion-text-center">
+        <ion-icon name="add-circle-outline" style="width: 290px; height: 250px; " color="success"></ion-icon>
+    </div>
+    <form [formGroup]="forma" (ngSubmit)="register()">
+        <ion-item>
+                <ion-label position="floating">Serial del electrodoméstico</ion-label>
+                <ion-input formControlName="serial"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+            <ion-button (click)="scan('serial')">
+                <ion-icon name="qr-scanner"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Nombre del electrodoméstico</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+        </ion-item>
 
-    <br>
+        <br>
 
-    <ion-item>
-      <ion-label position="floating">Serial Medidor</ion-label>
-      <ion-input formControlName="meter" type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label position="floating">Serial Medidor</ion-label>
+            <ion-input formControlName="meter" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-button (click)="scan('meter')">
+                <ion-icon name="qr-scanner"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <br>
 
-    <br>
+        <ion-list>
 
-    <ion-list>
+            <ion-item>
+                <ion-label>Categoría</ion-label>
+                <ion-select placeholder="Seleccione una" formControlName="category">
+                    <ion-select-option *ngFor="let item of categorias">{{item | titlecase}}</ion-select-option>
+                </ion-select>
+            </ion-item>
 
-      <ion-item>
-        <ion-label>Categoría</ion-label>
-        <ion-select placeholder="Seleccione una" formControlName="category">
-          <ion-select-option  *ngFor="let item of categorias">{{item | titlecase}}</ion-select-option>
-        </ion-select>
-      </ion-item>
+        </ion-list>
 
-    </ion-list>
-
-    <ion-item>
-      <ion-label position="floating" >Voltaje</ion-label>
-      <ion-input type="number" placeholder="Voltage" formControlName="voltage"></ion-input>
-    </ion-item>
-    <br>
-    <ion-button color="success" expand="block" type="submit" >AGREGAR</ion-button>
-  </form>
+        <ion-item>
+            <ion-label position="floating">Voltaje</ion-label>
+            <ion-input type="number" placeholder="Voltage" formControlName="voltage"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button color="success" expand="block" type="submit">AGREGAR</ion-button>
+    </form>
 
 </ion-content>

@@ -33,14 +33,11 @@
     "chartjs-plugin-annotation": "^0.5.7",
     "chartjs-plugin-streaming": "^1.8.0",
     "core-js": "^2.5.4",
-<<<<<<< HEAD
     "email-verify": "^0.2.1",
     "phonegap-plugin-barcodescanner": "8.0.1",
-=======
     "email-existence": "^0.1.6",
     "ng2-charts": "^2.0.4",
     "ngx-socket-io": "^2.1.1",
->>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.29"
   },

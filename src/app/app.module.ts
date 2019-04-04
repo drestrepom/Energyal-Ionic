@@ -47,11 +47,4 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     exports: []
 })
 export class AppModule {
-<<<<<<< HEAD
-    // static  URL_API = 'https://energyal.herokuapp.com/';
-    // static URL_API = 'http://192.168.0.101:3000/';
-    static URL_API = 'http://10.12.19.85:3000/';
-=======
-
->>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
 }
