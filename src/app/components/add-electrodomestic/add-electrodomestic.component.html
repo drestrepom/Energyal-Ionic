@@ -4,31 +4,33 @@
     </div>
     <form [formGroup]="forma" (ngSubmit)="register()">
         <ion-item>
-                <ion-label position="floating">Serial del electrodoméstico</ion-label>
+            <ion-avatar slot="start">
+                <ion-button (click)="scan('serial')">
+                    <ion-icon name="camera"></ion-icon>
+                </ion-button>
+            </ion-avatar>
+                <ion-label position="floating">Serial del electrodoméstico:</ion-label>
                 <ion-input formControlName="serial"></ion-input>
         </ion-item>
-        <br>
-        <ion-item>
-            <ion-button (click)="scan('serial')">
-                <ion-icon name="qr-scanner"></ion-icon>
-            </ion-button>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Nombre del electrodoméstico</ion-label>
-            <ion-input formControlName="name" type="text"></ion-input>
-        </ion-item>
 
         <br>
 
         <ion-item>
-            <ion-label position="floating">Serial Medidor</ion-label>
-            <ion-input formControlName="meter" type="text"></ion-input>
+            <ion-avatar slot="start">
+                <ion-button (click)="scan('meter')" >
+                    <ion-icon name="camera"></ion-icon>
+                </ion-button>
+            </ion-avatar>
+                <ion-label class="tamaño" position="floating">Serial medidor:</ion-label>
+                <ion-input class="tamaño" formControlName="meter" type="text"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-button (click)="scan('meter')">
-                <ion-icon name="qr-scanner"></ion-icon>
-            </ion-button>
-        </ion-item>
+        
+        <br>
+            <ion-item>
+                <ion-label position="floating">Nombre del electrodoméstico</ion-label>
+                <ion-input formControlName="name" type="text"></ion-input>
+            </ion-item>
+
         <br>
 
         <ion-list>

@@ -27,17 +27,10 @@ export class AddElectrodomesticComponent implements OnInit {
 
     forma: FormGroup;
     categorias = [
-        'televisor',
-        'video juegos',
-        'computador',
-        'estufa',
-        'horno',
-        'lavadora',
-        'aire acondicionado',
-        'ventilador',
-        'microondas',
-        'secador de pelo',
-        'lámpara',
+        'Cocina',
+        'Baño',
+        'Hogar',
+        'Otros',
     ];
 
     ngOnInit() {
