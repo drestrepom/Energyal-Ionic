@@ -5,6 +5,9 @@ import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IElectrodomestic} from '../../interfaces/electrodomestic';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
+
 @Component({
     selector: 'app-add-electrodomestic',
     templateUrl: './add-electrodomestic.component.html',
@@ -16,7 +19,8 @@ export class AddElectrodomesticComponent implements OnInit {
                 public alertController: AlertController,
                 public loadingController: LoadingController,
                 private sElectrodomestic: ElectrodomesticService,
-                private toastController: ToastController) {
+                private toastController: ToastController,
+                private barcodeScanner: BarcodeScanner) {
     }
 
     forma: FormGroup;
@@ -57,7 +61,7 @@ export class AddElectrodomesticComponent implements OnInit {
 
     register() {
         const electrodomestic: IElectrodomestic = this.forma.value;
-        this.presentLoading();
+        // this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
@@ -115,6 +119,14 @@ export class AddElectrodomesticComponent implements OnInit {
             duration: 2000
         });
         toast.present();
+    }
+
+    scan() {
+        this.barcodeScanner.scan().then(barcodeData => {
+            console.log('Barcode data', barcodeData);
+           }).catch(err => {
+               console.log('Error', err);
+           });
     }
 
 }

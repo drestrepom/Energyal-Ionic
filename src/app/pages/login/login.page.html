@@ -1,52 +1,50 @@
-
 <ion-content padding>
-  <ion-text color="primary">
-    <h2 style="text-align: center">Inicio de sesión</h2>
-  </ion-text>
-  <br>
-  <ion-img src="assets/img/Logo2.png"></ion-img>
-  <br>
-  <form [formGroup]="forma" (ngSubmit)="login(forma)">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.email">
-        <div class="error-message"
-             *ngIf="forma.controls['email'].hasError(validation.type) && (forma.controls['email'].dirty || forma.controls['email'].touched)">
-          <ion-icon name="information-circle-outline"></ion-icon>
-          {{ validation.message }}
+    <ion-text color="primary">
+        <h2 style="text-align: center">Inicio de sesión</h2>
+    </ion-text>
+    <br>
+    <ion-img src="assets/img/Logo2.png"></ion-img>
+    <br>
+    <form [formGroup]="forma" (ngSubmit)="login(forma)">
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message" *ngIf="forma.controls['email'].hasError(validation.type) && (forma.controls['email'].dirty || forma.controls['email'].touched)">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    {{ validation.message }}
+                </div>
+            </ng-container>
         </div>
-      </ng-container>
-    </div>
 
 
-    <br>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" formControlName="password">
-      </ion-input>
-    </ion-item>
-    <!--<div class="validation-errors">-->
-      <!--<ng-container *ngFor="let validation of validation_messages.password">-->
+        <br>
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password">
+            </ion-input>
+        </ion-item>
+        <!--<div class="validation-errors">-->
+        <!--<ng-container *ngFor="let validation of validation_messages.password">-->
         <!--<div class="error-message"-->
-             <!--*ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">-->
-          <!--<ion-icon name="information-circle-outline"></ion-icon>-->
-          <!--{{ validation.message }}-->
+        <!--*ngIf="forma.controls['password'].hasError(validation.type) && (forma.controls['password'].dirty || forma.controls['password'].touched)">-->
+        <!--<ion-icon name="information-circle-outline"></ion-icon>-->
+        <!--{{ validation.message }}-->
         <!--</div>-->
-      <!--</ng-container>-->
-    <!--</div>-->
+        <!--</ng-container>-->
+        <!--</div>-->
 
-    <br>
-    <ion-button color="success" expand="block" type="submit" >INICIAR SESIÓN</ion-button>
-    <!--routerLink="/principal"-->
-    <!--[disabled]="!forma.valid"-->
-    <br>
-    <ion-button color="success" expand="block" routerLink="/register">REGISTRAR</ion-button>
+        <br>
+        <ion-button color="success" expand="block" type="submit">INICIAR SESIÓN</ion-button>
+        <!--routerLink="/principal"-->
+        <!--[disabled]="!forma.valid"-->
+        <br>
+        <ion-button color="success" expand="block" routerLink="/register">REGISTRAR</ion-button>
 
-    <br>
-    <ion-button color="success" expand="block" (click)="loginDesarrollo()">Login Desarrollo </ion-button>
-  </form>
+        <br>
+        <ion-button color="success" expand="block" (click)="loginDesarrollo()">Login Desarrollo </ion-button>
+    </form>
 
 </ion-content>
