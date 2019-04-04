@@ -12,9 +12,9 @@ export class DayComponent implements OnInit {
 
 
     lineChartData: ChartDataSets[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+        {data: [0, 0, 0, 0, 0, 0, 0], label: 'kWh'},
     ];
-    lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    lineChartLabels: Label[] = ['', '', '', '', '', '', ''];
     lineChartOptions: (ChartOptions & { annotation: any }) = {
         responsive: true,
         scales: {
@@ -25,16 +25,16 @@ export class DayComponent implements OnInit {
                     id: 'y-axis-0',
                     position: 'left',
                 },
-                {
-                    id: 'y-axis-1',
-                    position: 'right',
-                    gridLines: {
-                        color: 'rgba(255,0,0,0.3)',
-                    },
-                    ticks: {
-                        fontColor: 'red',
-                    }
-                }
+                // {
+                //     id: 'y-axis-1',
+                //     position: 'right',
+                //     gridLines: {
+                //         color: 'rgba(255,0,0,0.3)',
+                //     },
+                //     ticks: {
+                //         fontColor: 'red',
+                //     }
+                // }
             ]
         },
         annotation: {
@@ -89,15 +89,16 @@ export class DayComponent implements OnInit {
     endTime = new Date();
 
     ionViewWillEnter() {
+        this.lineChartLabels = this.statsService.labelsHours();
         this.startTime.setHours(0, 0, 0);
         console.log(this.startTime);
-        console.log('inicio component');
-        const day = this.statsService.stats(this.startTime, this.endTime, this.endTime.getHours()).subscribe(value => {
-            const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
-            // @ts-ignore
-            lineChartData[0] = {label: this.lineChartData[0].label, data: value.kWh};
-            this.lineChartData = lineChartData;
-        });
+        const day = this.statsService.dates(this.startTime, this.endTime, this.endTime.getHours())
+            .subscribe(value => {
+                const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
+                // @ts-ignore
+                lineChartData[0] = {label: this.lineChartData[0].label, data: value.kWh};
+                this.lineChartData = lineChartData;
+            });
     }
 
     constructor(private statsService: StatsService) {
