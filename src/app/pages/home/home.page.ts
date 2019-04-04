@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MenuController} from '@ionic/angular';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -8,18 +9,16 @@ import {UserService} from '../../services/user.service';
     styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit, OnDestroy {
-    title = 'Home';
+    title = '';
 
-    constructor(private menuController: MenuController, private uService: UserService) {
+    constructor(private menuController: MenuController,
+                private uService: UserService,
+                private router: Router) {
     }
 
-    appMenu = [
-        {title: 'Add Disp.', url: '/add-electrodomestic', icon: 'list'},
-        {title: 'Home.', url: '/home', icon: 'list'},
-        {title: 'Salir', url: '/login', icon: 'list'}
-    ];
-
     ngOnInit() {
+        this.title = 'Home';
+        this.router.navigate(['/home/home']);
     }
 
     toggleMenu() {

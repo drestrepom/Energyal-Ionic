@@ -1,10 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHandler, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IUser} from '../interfaces/IUser';
 import {RequestOptions} from '@angular/http';
 import {Body} from '@angular/http/src/body';
+
+import * as emailExistence from 'email-existence';
 import {AppModule} from '../app.module';
+import {FormControl} from '@angular/forms';
+import {URL_API} from '../../config/config';
+import {SocketService} from './socket.service';
 
 
 @Injectable({
@@ -12,16 +17,20 @@ import {AppModule} from '../app.module';
 })
 export class UserService {
 
-    url = AppModule.URL_API;
+    url = URL_API;
 
     user = null;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private socketService: SocketService) {
     }
 
     login(user): Observable<any> {
         // Establecemos cabeceras
-        return this.http.post(this.url + 'user/login', user);
+        const logInfo = this.http.post(this.url + 'user/login', user);
+        logInfo.subscribe(value => {
+            this.socketService.sendInfo(value['user']._id);
+        });
+        return logInfo;
     }
 
     getUser() {
@@ -32,10 +41,10 @@ export class UserService {
         this.user = null;
     }
 
-    exists(email: string): Observable<any> {
-        const body = {email: email};
-        console.log('cuerpo', body);
-        return this.http.get(this.url + 'user/exists', {params: new HttpParams().set('email', email)});
+    exists(control: FormControl) {
+        const that = this;
+        console.log('cuerpo', control.value);
+        return that.http.get(this.url + `user/${control.value}`);
     }
 
     register(user: IUser): Observable<any> {
@@ -47,11 +56,25 @@ export class UserService {
         return this.http.get(this.url + `user/electrodomestics/${this.user.user._id}`);
     }
 
-    async challengPassword(newPassword) {
+    async challengPassword(oldPassword, newPassword) {
         console.log(this.user);
-        return await this.http.put(this.url + 'user', {id: this.user.user._id, password: newPassword}).subscribe(value => {
+        return await this.http.put(this.url + 'user', {
+            id: this.user.user._id,
+            newPassword,
+            oldPassword
+        }).subscribe(value => {
             console.log(value);
             return true;
         });
     }
+
+    // async emailExist(control: FormControl) {
+    //     let valid = null;
+    //    return this.http.get(this.url + `user/${control.value}`).subscribe(value => {
+    //         console.log('El usuario', value);
+    //         valid = value;
+    //     });
+    //     console.log('valid', valid);
+    //     return valid;
+    // }
 }

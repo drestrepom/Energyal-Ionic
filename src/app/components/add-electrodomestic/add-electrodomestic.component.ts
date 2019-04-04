@@ -4,6 +4,7 @@ import {AlertController, LoadingController, ToastController} from '@ionic/angula
 import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IElectrodomestic} from '../../interfaces/electrodomestic';
+import {Alerts} from '../../../utils/alerts';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
@@ -11,7 +12,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 @Component({
     selector: 'app-add-electrodomestic',
     templateUrl: './add-electrodomestic.component.html',
-    styleUrls: ['./add-electrodomestic.component.scss'],
+    styles: []
 })
 export class AddElectrodomesticComponent implements OnInit {
 
@@ -20,7 +21,11 @@ export class AddElectrodomesticComponent implements OnInit {
                 public loadingController: LoadingController,
                 private sElectrodomestic: ElectrodomesticService,
                 private toastController: ToastController,
+<<<<<<< HEAD
                 private barcodeScanner: BarcodeScanner) {
+=======
+                private alerts: Alerts) {
+>>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
     }
 
     forma: FormGroup;
@@ -60,52 +65,40 @@ export class AddElectrodomesticComponent implements OnInit {
     }
 
     register() {
+        if (this.forma.invalid) {
+            this.alerts.presentAlertDanger();
+            return;
+        }
+        this.alerts.presentLoading();
         const electrodomestic: IElectrodomestic = this.forma.value;
+<<<<<<< HEAD
         // this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
+=======
+>>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
         this.sElectrodomestic.register(electrodomestic).subscribe(result => {
-            this.loadingController.dismiss();
-            this.presentToast();
+            this.alerts.coloseAlert();
+            this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
         }, error1 => {
-            this.loadingController.dismiss();
-            this.presentAlertFailed(error1);
+            this.alerts.coloseAlert();
+            let alert = '';
+            if (typeof error1.error.error.errors !== 'undefined') {
+                alert = error1.error.error.errors.serial.message;
+            } else if (typeof error1.error.error !== 'undefined') {
+                alert = error1.error.error;
+            } else {
+                alert = 'no se ha encontrado';
+            }
+            this.presentAlertFailed(alert);
         });
-    }
-
-    async presentLoading() {
-        const loading = await this.loadingController.create({
-            message: 'Cargando'
-        });
-        await loading.present();
-
-        const {role, data} = await loading.onDidDismiss();
-
-        console.log('Loading dismissed!');
-    }
-
-    async presentAlertOk() {
-        const alert = await this.alertController.create({
-            header: 'Alert',
-            subHeader: 'Subtitle',
-            message: 'Registro exitoso',
-            buttons: [{
-                text: 'OK',
-                handler: (blah) => {
-                    this.router.navigate(['/home']);
-                }
-            }]
-        });
-
-        await alert.present();
     }
 
     async presentAlertFailed(error) {
-        console.log(error);
         const alert = await this.alertController.create({
             header: 'Alerta',
             subHeader: 'Registro Fallido',
-            message: error.error.error.message,
+            message: error,
             buttons: [{
                 text: 'OK'
             }]
@@ -113,6 +106,7 @@ export class AddElectrodomesticComponent implements OnInit {
         await alert.present();
     }
 
+<<<<<<< HEAD
     async presentToast() {
         const toast = await this.toastController.create({
             message: 'Tu electrodoméstico ha sido registrado correctamente',
@@ -129,4 +123,6 @@ export class AddElectrodomesticComponent implements OnInit {
            });
     }
 
+=======
+>>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {IUser} from '../../interfaces/IUser';
 import {AlertController, ToastController} from '@ionic/angular';
+import {Alerts} from '../../../utils/alerts';
 
 @Component({
     selector: 'app-user',
@@ -13,8 +14,8 @@ export class UserComponent implements OnInit {
 
     constructor(private userService: UserService,
                 private  alertController: AlertController,
-                private toastController: ToastController) {
-        console.log('usercomponent', userService.user.user);
+                private toastController: ToastController,
+                private alerts: Alerts) {
     }
 
     ngOnInit() {
@@ -30,9 +31,14 @@ export class UserComponent implements OnInit {
             subHeader: 'Ingrese su nueva contraseña',
             inputs: [
                 {
-                    name: 'pass',
+                    name: 'pass1',
                     type: 'password',
-                    placeholder: 'Contraseña'
+                    placeholder: 'Contraseña actual'
+                },
+                {
+                    name: 'pass2',
+                    type: 'password',
+                    placeholder: 'Contraseña nueva',
                 },
             ],
             buttons: [
@@ -40,23 +46,20 @@ export class UserComponent implements OnInit {
                     text: 'Aceptar',
                     handler: (data) => {
                         this.alertController.dismiss();
-                        this.userService.challengPassword(data.pass).then(value => {
-                            this.presentToast();
+                        this.userService.challengPassword(data.pass1, data.pass2).then(value => {
+                            if (value['ok']) {
+                                this.alerts.presentToast('Contraseña cambiada');
+                            } else {
+                                this.alerts.presentToast('Contraseña incorrescta', 3000);
+                            }
+                        }).catch(reason => {
+
                         });
-                        console.log(data.name);
                     }
                 }
             ]
         });
         alert.present();
         return alert;
-    }
-
-    async presentToast() {
-        const toast = await this.toastController.create({
-            message: 'Tu contraseña ha sido cambiada correctamente',
-            duration: 2000
-        });
-        toast.present();
     }
 }

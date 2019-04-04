@@ -7,15 +7,14 @@ import {IonicModule} from '@ionic/angular';
 
 import {HomePage} from './home.page';
 import {AddElectrodomesticComponent} from '../../components/add-electrodomestic/add-electrodomestic.component';
-
-import {LoginPageModule} from '../login/login.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MenuComponent} from '../../components/menu/menu.component';
 import {UserComponent} from '../../components/user/user.component';
 import {IndexComponent} from '../../components/index/index.component';
-import {UserService} from '../../services/user.service';
 import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctrod.component';
-import {ElectrodomesticService} from '../../services/electrodomestic.service';
 import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
+import {ChartsModule} from 'ng2-charts';
+import {StatsPageModule} from '../stats/stats.module';
 
 const routes: Routes = [
     {
@@ -24,7 +23,8 @@ const routes: Routes = [
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
-            {path: 'home', component: IndexComponent}
+            {path: 'index', component: IndexComponent},
+            { path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule' }
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
@@ -37,6 +37,8 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         ReactiveFormsModule,
+        ChartsModule,
+        NgxChartsModule
     ],
     declarations: [
         HomePage,

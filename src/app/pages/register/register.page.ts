@@ -3,8 +3,22 @@ import {UserService} from '../../services/user.service';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {Router} from '@angular/router';
 import {IUser} from '../../interfaces/IUser';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+    AbstractControl,
+    AsyncValidator,
+    AsyncValidatorFn,
+    FormControl,
+    FormGroup, ValidationErrors,
+    ValidatorFn,
+    Validators
+} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import {Validations} from '../../../utils/validations';
+import {Alerts} from '../../../utils/alerts';
 
+// @ts-ignore
 @Component({
     selector: 'app-register',
     templateUrl: './register.page.html',
@@ -15,7 +29,13 @@ export class RegisterPage implements OnInit {
     // @ts-ignore
     patterns = require('../../../assets/utils/validation.patterns.json');
 
-    constructor(private sUser: UserService, public alertController: AlertController, private router: Router, private loadingController: LoadingController) {
+    constructor(private userService: UserService,
+                public alertController: AlertController,
+                private router: Router,
+                private loadingController: LoadingController,
+                private http: HttpClient,
+                private emailValidation: Validations,
+                private alerts: Alerts) {
         this.forma = new FormGroup({
             'name': new FormControl(null, {
                 validators: [
@@ -26,8 +46,9 @@ export class RegisterPage implements OnInit {
             'email': new FormControl('', {
                 validators: [
                     // Validators.required,
-                    Validators.pattern(this.patterns.email)
-                ], updateOn: 'blur'
+                    Validators.pattern(this.patterns.email),
+                ], updateOn: 'blur',
+                asyncValidators: []
             }),
             'password': new FormControl('', {
                 validators: [
@@ -67,10 +88,15 @@ export class RegisterPage implements OnInit {
     //         }));
     //     });
     // }
-
+    forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+        return (control: AbstractControl): { [key: string]: any } | null => {
+            const forbidden = nameRe.test(control.value);
+            return forbidden ? {'forbiddenName': {value: control.value}} : null;
+        };
+    }
 
     emailExists(control: FormControl) {
-        return this.sUser.exists(control.value);
+        return this.userService.exists(control.value);
     }
 
     async presentAlertDanger() {
@@ -81,29 +107,6 @@ export class RegisterPage implements OnInit {
         });
 
         await alert.present();
-    }
-
-    async presentAlertOk() {
-        const alert = await this.alertController.create({
-            header: 'Alert',
-            subHeader: 'Subtitle',
-            message: 'Registro exitoso',
-            buttons: [{
-                text: 'OK',
-                handler: (blah) => {
-                    this.router.navigate(['/login']);
-                }
-            }]
-        });
-
-        await alert.present();
-    }
-
-    async presentLoading() {
-        const loading = await this.loadingController.create({
-            message: 'Cargando'
-        });
-        await loading.present();
     }
 
     async presentAlertFailed(error) {
@@ -120,20 +123,16 @@ export class RegisterPage implements OnInit {
     }
 
     register() {
-        // this.sUser.exists(this.forma.controls.email.value).subscribe(value => {
-        //     console.log('valor', value);
-        // });
-        // console.log(this.exx(this.forma.controls.email.value));
         console.log(this.forma);
         if (this.forma.invalid) {
             this.presentAlertDanger();
         } else {
-            this.presentLoading();
-            this.sUser.register(this.forma.value).subscribe(result => {
-                this.loadingController.dismiss();
-                this.presentAlertOk();
+            this.alerts.presentLoading();
+            this.userService.register(this.forma.value).subscribe(result => {
+                this.alerts.coloseAlert();
+                this.alerts.presentToast('Registro exitoso');
             }, error => {
-                this.loadingController.dismiss();
+                this.alerts.coloseAlert();
                 this.presentAlertFailed(error);
             });
         }

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import {AlertController, LoadingController} from '@ionic/angular';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
     selector: 'app-login',
@@ -14,7 +15,11 @@ export class LoginPage implements OnInit, OnDestroy {
     // @ts-ignore
     patterns = require('../../../assets/utils/validation.patterns.json');
 
-    constructor(private sUser: UserService, private router: Router, public alertController: AlertController, public loadingController: LoadingController) {
+    constructor(private sUser: UserService,
+                private router: Router,
+                public alertController: AlertController,
+                public loadingController: LoadingController,
+                private soketService: SocketService) {
         this.sUser.logOut();
         this.forma = new FormGroup({
             'email': new FormControl('', [
@@ -53,7 +58,11 @@ export class LoginPage implements OnInit, OnDestroy {
             if (result.ok) {
                 this.sUser.user = result;
                 this.forma.reset();
+<<<<<<< HEAD
                 this.router.navigate(['/home/home']);
+=======
+                this.router.navigate(['/home/index']);
+>>>>>>> 044b53823c2029c787e00dd24725b0f8e2e0799d
             } else {
                 this.loginFailed();
             }
@@ -65,39 +74,20 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     loginDesarrollo() {
+        this.soketService.getSaludo('jejejeje');
         const user = {
             'ok': true,
             'user': {
-                'city': 'medellin',
-                'status': true,
-                '_id': '5c82c8787b6a5045685ab328',
-                'email': 'ccc',
-                'name': 'Henry Castañeda',
-                'password': '$2b$10$CTmtiIXYkFEL81gSvbHRz.SINqhV3u0BCjma5ALvWkaSvtYXxIk0u',
-                'electrodomestics': [
-                    {
-                        'role': 'ADMIN',
-                        '_id': '5c83f628adcb3303185c0c14',
-                        'electrodomestic': {
-                            '_id': '5c83f628adcb3303185c0c12',
-                            'name': 'lampara melo'
-                        }
-                    },
-                    {
-                        'role': 'ADMIN',
-                        '_id': '5c83f628adcb3303185c0c14',
-                        'electrodomestic': {
-                            '_id': '5c83f628adcb3303185c0c12',
-                            'name': 'lampara melo'
-                        }
-                    }
-                ],
-                '__v': 0
+                'city': 'Yarumal',
+                '_id': '5c96d0a3b044e21cc8b1c893',
+                'name': 'Diego Restrepo',
+                'email': 'restrepomesadiego@gmail.com',
+                'password': '$2b$10$8.p83J4e18KdrcvOOLgfY.ov6Tme46mD7ml9uIn5DzZ5QLnUcyDny'
             },
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJtZWRlbGxpbiIsInN0YXR1cyI6dHJ1ZSwiX2lkIjoiNWM4MmM4Nzg3YjZhNTA0NTY4NWFiMzI4IiwiZW1haWwiOiJjY2MiLCJuYW1lIjoiSGVucnkgQ2FzdGHDsWVkYSIsInBhc3N3b3JkIjoiJDJiJDEwJENUbXRpSVhZa0ZFTDgxZ1N2YkhSei5TSU5xaFYzdTBCQ2ptYTVBTHZXa2FTdnRZWHhJazB1IiwiZWxlY3Ryb2RvbWVzdGljcyI6W3sicm9sZSI6IkFETUlOIiwiX2lkIjoiNWM4M2Y2MjhhZGNiMzMwMzE4NWMwYzE0IiwiZWxlY3Ryb2RvbWVzdGljIjp7Il9pZCI6IjVjODNmNjI4YWRjYjMzMDMxODVjMGMxMiIsIm5hbWUiOiJsYW1wYXJhIG1lbG8ifX0seyJyb2xlIjoiQURNSU4iLCJfaWQiOiI1YzgzZjYyOGFkY2IzMzAzMTg1YzBjMTQiLCJlbGVjdHJvZG9tZXN0aWMiOnsiX2lkIjoiNWM4M2Y2MjhhZGNiMzMwMzE4NWMwYzEyIiwibmFtZSI6ImxhbXBhcmEgbWVsbyJ9fV0sIl9fdiI6MH0sImlhdCI6MTU1Mjk0ODk2NCwiZXhwIjoxNTUzMTIxNzY0fQ.WWr-cvPbREztXqYVAS5CsGwfkerJtbucNsScoSeaVFI'
+            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJZYXJ1bWFsIiwiX2lkIjoiNWM5NmQwYTNiMDQ0ZTIxY2M4YjFjODkzIiwibmFtZSI6IkRpZWdvIFJlc3RyZXBvIiwiZW1haWwiOiJyZXN0cmVwb21lc2FkaWVnb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ4LnA4M0o0ZTE4S2RyY3ZPT0xnZlkub3Y2VG1lNDZtRDdtbDl1SW41RHpaNVFMblVjeURueSJ9LCJpYXQiOjE1NTM1NDg4NDUsImV4cCI6MTU1MzU5MjA0NX0.YXpJyBIK6g5q52FHSTpbISezPwHDQjpgh5Wce60ANbY'
         };
         this.sUser.user = user;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/index']);
     }
 
     async presentLoading() {
@@ -109,7 +99,6 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     async loginFailed() {
-        // console.log(error.error.error.message);
         const alert = await this.alertController.create({
             header: 'Error!!',
             subHeader: 'Error al iniciar sesión',

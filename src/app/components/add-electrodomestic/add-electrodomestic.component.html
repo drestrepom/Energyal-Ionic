@@ -28,7 +28,7 @@
       <ion-item>
         <ion-label>Categoría</ion-label>
         <ion-select placeholder="Seleccione una" formControlName="category">
-          <ion-select-option  *ngFor="let item of categorias">{{item}}</ion-select-option>
+          <ion-select-option  *ngFor="let item of categorias">{{item | titlecase}}</ion-select-option>
         </ion-select>
       </ion-item>
 
