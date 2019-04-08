@@ -1,7 +1,6 @@
+<ion-searchbar placeholder="Busca tus electridomesticos" [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()">
+</ion-searchbar>
 <ion-content padding>
-  <ion-searchbar placeholder="Busca tus electridomesticos" [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()">
-  </ion-searchbar>
-
   <ion-virtual-scroll [items]="auxElectrodomestics">
     <ion-item *virtualItem="let item" (click)="pushMoreInfo(item.electrodomestic._id)">
       {{ item.electrodomestic.name}}

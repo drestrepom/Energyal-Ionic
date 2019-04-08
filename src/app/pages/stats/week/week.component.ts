@@ -79,10 +79,10 @@ export class WeekComponent implements OnInit {
     endTime = new Date();
 
     ionViewWillEnter() {
-        this.startTime.setDate(this.endTime.getDate() - 7);
-    
+        this.startTime.setDate(this.endTime.getDate() - this.endTime.getUTCDay() );
+
         console.log(this.startTime);
-        const day = this.statsService.datesUser(this.startTime, this.endTime, 7)
+        const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getUTCDay())
             .subscribe(value => {
                 const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
                 // @ts-ignore
