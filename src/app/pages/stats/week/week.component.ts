@@ -80,9 +80,9 @@ export class WeekComponent implements OnInit {
 
     ionViewWillEnter() {
         this.lineChartLabels = this.statsService.labelsHours();
-        this.startTime.setHours(0, 0, 0);
+        this.startTime.setDate(this.endTime.getDate() - 7);
         console.log(this.startTime);
-        const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
+        const day = this.statsService.datesUser(this.startTime, this.endTime, 7)
             .subscribe(value => {
                 const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
                 // @ts-ignore
