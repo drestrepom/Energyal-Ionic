@@ -19,19 +19,17 @@ export class AddElectrodomesticComponent implements OnInit {
     constructor(private router: Router,
                 public alertController: AlertController,
                 public loadingController: LoadingController,
-                private sElectrodomestic: ElectrodomesticService,
+                private electrodomesticService: ElectrodomesticService,
                 private toastController: ToastController,
                 private barcodeScanner: BarcodeScanner,
                 private alerts: Alerts) {
+        electrodomesticService.getCategories().subscribe(value => {
+            this.categorias = value as any[];
+        });
     }
 
     forma: FormGroup;
-    categorias = [
-        'Cocina',
-        'Baño',
-        'Hogar',
-        'Otros',
-    ];
+    categorias = [];
 
     ngOnInit() {
         this.forma = new FormGroup({
@@ -64,7 +62,7 @@ export class AddElectrodomesticComponent implements OnInit {
         // this.presentLoading();
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
-        this.sElectrodomestic.register(electrodomestic).subscribe(result => {
+        this.electrodomesticService.register(electrodomestic).subscribe(result => {
             this.alerts.coloseAlert();
             this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
         }, error1 => {

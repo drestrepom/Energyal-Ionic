@@ -90,9 +90,9 @@ export class DayComponent implements OnInit {
 
     ionViewWillEnter() {
         this.lineChartLabels = this.statsService.labelsHours();
+        console.log(new Date());
         this.startTime.setHours(0, 0, 0);
-        console.log(this.startTime);
-        const day = this.statsService.dates(this.startTime, this.endTime, this.endTime.getHours())
+        const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
             .subscribe(value => {
                 const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
                 // @ts-ignore

@@ -57,7 +57,6 @@ export class UserService {
     }
 
     async challengPassword(oldPassword, newPassword) {
-        console.log(this.user);
         return await this.http.put(this.url + 'user', {
             id: this.user.user._id,
             newPassword,

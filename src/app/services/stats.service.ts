@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {URL_API} from '../../config/config';
 import {Observable} from 'rxjs';
+import {UserService} from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,10 +19,21 @@ export class StatsService {
         'Domingo'
     ];
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private  userService: UserService) {
     }
 
-    dates(start: Date, end: Date, length?: number): Observable<any> {
+    datesUser(start: Date, end: Date, length?: number):
+        Observable<any> {
+        console.log(end);
+        const body = {
+            startDate: start,
+            endDate: end,
+            user: this.userService.user.user._id,
+            length
+        };
+        return this.http.post(this.url + 'stats/user', body);
+    }
+    datesMeter(start: Date, end: Date, length?: number): Observable<any> {
         const body = {
             startDate: start,
             endDate: end,
@@ -44,11 +56,11 @@ export class StatsService {
         // startTime.setHours(0, 0, 0);
         // const length = endTime.getHours();
         // const labels = new Array(length);
-        // const dates = [];
+        // const datesUser = [];
         // const div = (endTime.getTime() - startTime.getTime()) / length;
         // for (let i = 0; i <= length; i++) {
         //     const itemDate = new Date(startTime.getTime() + (i * div));
-        //     dates.push(itemDate['getUTCHours']());
+        //     datesUser.push(itemDate['getUTCHours']());
         // }
         return labels;
     }

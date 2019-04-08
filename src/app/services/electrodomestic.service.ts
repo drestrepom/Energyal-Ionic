@@ -25,7 +25,11 @@ export class ElectrodomesticService {
         return this.http.post(this.url + 'electrodomestic', electrodomestic, {headers: headers});
     }
 
-     getOne(idElectro: string): Observable<any> {
-        return  this.http.get(this.url + 'electrodomestic/', {params: new HttpParams().set('id', idElectro)});
+    getOne(idElectro: string): Observable<any> {
+        return this.http.get(this.url + `electrodomestic/${idElectro}`);
+    }
+
+    getCategories() {
+        return  this.http.get(this.url + `electrodomestic/get/categories`);
     }
 }
