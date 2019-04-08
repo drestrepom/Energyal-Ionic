@@ -1,20 +1,20 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {StatsService} from '../../../services/stats.service';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
-import {StatsService} from '../../../services/stats.service';
 
 @Component({
-    selector: 'app-week',
-    templateUrl: './week.component.html',
-    styleUrls: ['./week.component.scss'],
+    selector: 'app-day',
+    templateUrl: './day.component.html',
+    styleUrls: ['./day.component.scss'],
 })
-export class WeekComponent implements OnInit {
+export class DayComponent implements OnInit {
 
 
     lineChartData: ChartDataSets[] = [
         {data: [0, 0, 0, 0, 0, 0, 0], label: 'kWh'},
     ];
-    lineChartLabels: Label[] = this.statsService.daysOfWeake;
+    lineChartLabels: Label[] = ['', '', '', '', '', '', ''];
     lineChartOptions: (ChartOptions & { annotation: any }) = {
         responsive: true,
         scales: {
@@ -25,6 +25,16 @@ export class WeekComponent implements OnInit {
                     id: 'y-axis-0',
                     position: 'left',
                 },
+                // {
+                //     id: 'y-axis-1',
+                //     position: 'right',
+                //     gridLines: {
+                //         color: 'rgba(255,0,0,0.3)',
+                //     },
+                //     ticks: {
+                //         fontColor: 'red',
+                //     }
+                // }
             ]
         },
         annotation: {
@@ -79,10 +89,10 @@ export class WeekComponent implements OnInit {
     endTime = new Date();
 
     ionViewWillEnter() {
-        this.startTime.setDate(this.endTime.getDate() - 7);
-    
-        console.log(this.startTime);
-        const day = this.statsService.datesUser(this.startTime, this.endTime, 7)
+        this.lineChartLabels = this.statsService.labelsHours();
+        console.log(new Date());
+        this.startTime.setHours(0, 0, 0);
+        const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
             .subscribe(value => {
                 const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
                 // @ts-ignore
@@ -143,6 +153,5 @@ export class WeekComponent implements OnInit {
         this.lineChartLabels[2] = ['1st Line', '2nd Line'];
         // this.chart.update();
     }
-
 
 }

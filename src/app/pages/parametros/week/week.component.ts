@@ -14,7 +14,7 @@ export class WeekComponent implements OnInit {
     lineChartData: ChartDataSets[] = [
         {data: [0, 0, 0, 0, 0, 0, 0], label: 'kWh'},
     ];
-    lineChartLabels: Label[] = this.statsService.daysOfWeake;
+    lineChartLabels: Label[] = ['', '', '', '', '', '', ''];
     lineChartOptions: (ChartOptions & { annotation: any }) = {
         responsive: true,
         scales: {
@@ -79,10 +79,10 @@ export class WeekComponent implements OnInit {
     endTime = new Date();
 
     ionViewWillEnter() {
-        this.startTime.setDate(this.endTime.getDate() - 7);
-    
+        this.lineChartLabels = this.statsService.labelsHours();
+        this.startTime.setHours(0, 0, 0);
         console.log(this.startTime);
-        const day = this.statsService.datesUser(this.startTime, this.endTime, 7)
+        const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
             .subscribe(value => {
                 const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
                 // @ts-ignore

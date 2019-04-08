@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 })
 export class ElectrodomesticsComponent implements OnInit {
     electrodomestics = [];
+    public searchTerm = '';
+    auxElectrodomestics = [];
     nums = [];
 
     constructor(private  userService: UserService,
@@ -24,13 +26,23 @@ export class ElectrodomesticsComponent implements OnInit {
         }
         this.userService.getElectrodomestic().subscribe(value => {
             this.electrodomestics = value.electrodomestics;
+            this.auxElectrodomestics = this.electrodomestics ;
         });
     }
 
     async ngOnInit() {
     }
-
+    setFilteredItems() {
+        this.auxElectrodomestics = this.filterItems(this.searchTerm);
+      }
     pushMoreInfo(id) {
         this.router.navigate(['home/info-electrod/', id]);
     }
+
+    filterItems(searchTerm) {
+        return this.electrodomestics.filter(item => {
+            // console.log(item);
+          return item.electrodomestic.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        });
+      }
 }
