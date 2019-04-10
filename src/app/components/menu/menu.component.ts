@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
         {title: 'Usuario', url: 'user', icon: 'contact'},
         {title: 'Estadisticas', url: 'stats/day', icon: 'stats'},
         {title: 'Electrodomésticos', url: 'electrodomestics', icon: 'list'},
-        {title: 'Parámetros', url: 'parametros/day', icon: 'clipboard'},
+        {title: 'Parámetros', url: 'parametros/day', icon: 'calculator'},
         {title: 'Salir', url: '/login', icon: 'power'}
     ];
 

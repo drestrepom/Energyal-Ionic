@@ -3,6 +3,9 @@
 <ion-content padding>
   <ion-virtual-scroll [items]="auxElectrodomestics">
     <ion-item *virtualItem="let item" (click)="pushMoreInfo(item.electrodomestic._id)">
+      <ion-avatar slot="end">
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </ion-avatar>
       {{ item.electrodomestic.name}}
     </ion-item>
   </ion-virtual-scroll>
