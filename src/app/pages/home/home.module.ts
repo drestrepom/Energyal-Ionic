@@ -7,16 +7,17 @@ import {IonicModule} from '@ionic/angular';
 
 import {HomePage} from './home.page';
 import {AddElectrodomesticComponent} from '../../components/add-electrodomestic/add-electrodomestic.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {MenuComponent} from '../../components/menu/menu.component';
 import {UserComponent} from '../../components/user/user.component';
 import {IndexComponent} from '../../components/index/index.component';
-import { InfoElctrodComponent } from 'src/app/components/info-elctrod/info-elctrod.component';
+import {InfoElctrodComponent} from 'src/app/components/info-elctrod/info-elctrod.component';
 import {ElectrodomesticsComponent} from '../../components/electrodomestics/electrodomestics.component';
 import {ChartsModule} from 'ng2-charts';
 import {StatsPageModule} from '../stats/stats.module';
 import {ParametrosPageModule} from '../parametros/parametros.module';
-import { from } from 'rxjs';
+import {from} from 'rxjs';
+import {KwhPipe} from '../../pipes/kwh.pipe';
 
 const routes: Routes = [
     {
@@ -26,8 +27,8 @@ const routes: Routes = [
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
             {path: 'index', component: IndexComponent},
-            { path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule' },
-            { path: 'parametros', loadChildren: '../parametros/parametros.module#ParametrosPageModule' }
+            {path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule'},
+            {path: 'parametros', loadChildren: '../parametros/parametros.module#ParametrosPageModule'}
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
@@ -50,7 +51,8 @@ const routes: Routes = [
         UserComponent,
         IndexComponent,
         InfoElctrodComponent,
-        ElectrodomesticsComponent
+        ElectrodomesticsComponent,
+        KwhPipe
     ],
     exports: [
         MenuComponent

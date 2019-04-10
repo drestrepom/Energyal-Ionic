@@ -20,6 +20,7 @@ import {StatsService} from './services/stats.service';
 const config: SocketIoConfig = {url: URL_API, options: {}};
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { KwhPipe } from './pipes/kwh.pipe';
 
 @NgModule({
     declarations: [

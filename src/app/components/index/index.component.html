@@ -1,4 +1,4 @@
-<div >
+<div>
     <canvas style="height: 500px;"
             baseChart
             [chartType]="'line'"
@@ -6,4 +6,11 @@
             [options]="options">
     </canvas>
 
+    <ion-text color="primary">
+        <h2>{{measurment.kwh | number : '1.1-5' | kwh}}</h2>
+    </ion-text>
+
+    <ion-text color="primary">
+        <h2>{{measurment.value | number : '1.1-5' | currency}}</h2>
+    </ion-text>
 </div>

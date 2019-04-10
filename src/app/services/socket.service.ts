@@ -22,7 +22,8 @@ export class SocketService {
             console.log('Disconnected');
         });
         socket.on('measurement',  (data)  => {
-           this.myEmitter.emit(data.value);
+            // console.log(data);
+           this.myEmitter.emit(data);
             // console.log(data);
         });
     }
