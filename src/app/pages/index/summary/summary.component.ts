@@ -9,15 +9,15 @@ import {StatsService} from '../../../services/stats.service';
 export class SummaryComponent implements OnInit {
 
     day = {
-        value: 0,
+        value: {value : 0},
         meta: 5000
     };
     week = {
-        value: 0,
+        value: {value : 0},
         meta: 1000
     };
     mounth = {
-        value: 0,
+        value: {value : 0},
         meta: 5800
     };
 
@@ -33,16 +33,16 @@ export class SummaryComponent implements OnInit {
         startW.setDate(end.getDate() - end.getUTCDay());
         startM.setDate(end.getDate() - end.getDay());
         this.statsService.sumUser(startD, end).subscribe(value => {
-            this.day = value[0];
-            console.log(this.day);
+            this.day.value = value[0];
+            console.log(this.day.value);
         });
         this.statsService.sumUser(startW, end).subscribe(value => {
-            this.week = value[0];
-            console.log(this.week);
+            this.week.value = value[0];
+            console.log(this.week.value);
         });
         this.statsService.sumUser(startM, end).subscribe(value => {
-            this.mounth = value[0];
-            console.log(this.mounth);
+            this.mounth.value = value[0];
+            console.log(this.mounth.value);
         });
     }
 
