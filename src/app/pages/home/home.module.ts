@@ -18,6 +18,7 @@ import {StatsPageModule} from '../stats/stats.module';
 import {ParametrosPageModule} from '../parametros/parametros.module';
 import {from} from 'rxjs';
 import {KwhPipe} from '../../pipes/kwh.pipe';
+import {IndexPage} from '../index/index.page';
 
 const routes: Routes = [
     {
@@ -26,9 +27,10 @@ const routes: Routes = [
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},
-            {path: 'index', component: IndexComponent},
+            // {path: 'index', component: IndexComponent},
             {path: 'stats', loadChildren: '../stats/stats.module#StatsPageModule'},
-            {path: 'parametros', loadChildren: '../parametros/parametros.module#ParametrosPageModule'}
+            {path: 'parametros', loadChildren: '../parametros/parametros.module#ParametrosPageModule'},
+            { path: 'index', loadChildren: '../index/index.module#IndexPageModule' },
         ]
     },
     {path: '**', pathMatch: 'full', redirectTo: 'home'},
@@ -42,7 +44,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ReactiveFormsModule,
         ChartsModule,
-        NgxChartsModule
+        NgxChartsModule,
     ],
     declarations: [
         HomePage,
@@ -52,7 +54,6 @@ const routes: Routes = [
         IndexComponent,
         InfoElctrodComponent,
         ElectrodomesticsComponent,
-        KwhPipe
     ],
     exports: [
         MenuComponent

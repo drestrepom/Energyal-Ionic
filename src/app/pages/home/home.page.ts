@@ -18,7 +18,6 @@ export class HomePage implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.title = 'Home';
-        this.router.navigate(['/home/home']);
     }
 
     toggleMenu() {

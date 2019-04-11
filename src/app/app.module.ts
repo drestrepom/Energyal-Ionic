@@ -24,7 +24,7 @@ import { KwhPipe } from './pipes/kwh.pipe';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     entryComponents: [],
     imports: [

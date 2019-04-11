@@ -7,10 +7,9 @@ const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', loadChildren: './pages/login/login.module#LoginPageModule'},
     {path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule'},
-    {path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [LoginGuard]},  { path: 'parametros', loadChildren: './pages/parametros/parametros.module#ParametrosPageModule' },
-
-
-
+    {path: 'home', loadChildren: './pages/home/home.module#HomePageModule', canActivate: [LoginGuard]},
+    {path: 'parametros', loadChildren: './pages/parametros/parametros.module#ParametrosPageModule'},
+    {path: 'index', loadChildren: './pages/index/index.module#IndexPageModule'},
 ];
 
 @NgModule({

@@ -94,7 +94,7 @@ export class DayComponent implements OnInit {
         this.startTime.setHours(0, 0, 0);
         const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
             .subscribe(value => {
-                const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
+                const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length - 1);
                 // @ts-ignore
                 lineChartData[0] = {label: this.lineChartData[0].label, data: value.kWh};
                 this.lineChartData = lineChartData;
