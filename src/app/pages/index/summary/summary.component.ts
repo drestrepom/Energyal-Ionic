@@ -30,15 +30,15 @@ export class SummaryComponent implements OnInit {
         startW.setDate(end.getDate() - end.getUTCDay());
         startM.setDate(end.getDate() - end.getDay());
         this.statsService.sumUser(startD, end).subscribe(value => {
-            this.day = value;
+            this.day = value[0];
             console.log(this.day);
         });
         this.statsService.sumUser(startW, end).subscribe(value => {
-            this.week = value;
+            this.week = value[0];
             console.log(this.week);
         });
         this.statsService.sumUser(startM, end).subscribe(value => {
-            this.mounth = value;
+            this.mounth = value[0];
             console.log(this.mounth);
         });
     }
