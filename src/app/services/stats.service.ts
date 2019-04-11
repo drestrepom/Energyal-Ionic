@@ -33,6 +33,7 @@ export class StatsService {
         };
         return this.http.post(this.url + 'stats/user', body);
     }
+
     datesMeter(start: Date, end: Date, length?: number): Observable<any> {
         const body = {
             startDate: start,
@@ -74,5 +75,16 @@ export class StatsService {
             dates.push(itemDate['getUTCHours']());
         }
         return dates;
+    }
+
+    sumUser(start: Date, end: Date):
+        Observable<any> {
+        console.log(end);
+        const body = {
+            startDate: start,
+            endDate: end,
+            user: this.userService.user.user._id,
+        };
+        return this.http.post(this.url + 'stats/sum/user', body);
     }
 }
