@@ -1,28 +1,28 @@
-<ion-content padding> 
+<ion-content padding>
     <ion-text color="primary">
         <h2 style="text-align: center">Resumen de consumo</h2>
     </ion-text>
     <br>
-<ion-list>
+    <ion-list>
 
-    <ion-text>Meta de consumo (Día):</ion-text>
-    <br>
-    <br>
-    <ion-progress-bar [value]="((100/5000) * day.value)/100" buffer="0.6"></ion-progress-bar>
-<br>
-<br>
-    <ion-text>Meta de consumo (Semana):</ion-text>
-    <br>
-    <br>
-    <ion-progress-bar [value]="((100/20000) * week.value)/100" buffer="0.6"></ion-progress-bar>
-<br>
-<br>
-    <ion-text>Meta de consumo (Mes):</ion-text>
+        <ion-text>Meta de consumo (Día):{{day.meta}}</ion-text>
         <br>
         <br>
-    <ion-progress-bar [value]="((100/80000) * mounth.value)/100" buffer="0.6"></ion-progress-bar>
+        <ion-progress-bar [value]="((100/day.meta) * day.value)/100" buffer="0.6"></ion-progress-bar>
+        <br>
+        <br>
+        <ion-text>Meta de consumo (Semana):{{week.meta}}</ion-text>
+        <br>
+        <br>
+        <ion-progress-bar [value]="((100/week.meta) * week.value)/100" buffer="0.6"></ion-progress-bar>
+        <br>
+        <br>
+        <ion-text>Meta de consumo (Mes):{{mounth.meta}}</ion-text>
+        <br>
+        <br>
+        <ion-progress-bar [value]="((100/mounth.meta) * mounth.value)/100" buffer="0.6"></ion-progress-bar>
 
-</ion-list>
+    </ion-list>
 
 
 </ion-content>

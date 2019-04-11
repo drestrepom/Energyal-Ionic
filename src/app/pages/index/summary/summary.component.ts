@@ -9,13 +9,16 @@ import {StatsService} from '../../../services/stats.service';
 export class SummaryComponent implements OnInit {
 
     day = {
-        value: 0
+        value: 0,
+        meta: 5000
     };
     week = {
-        value: 0
+        value: 0,
+        meta: 1000
     };
     mounth = {
-        value: 0
+        value: 0,
+        meta: 5800
     };
 
     constructor(private statsService: StatsService) {
