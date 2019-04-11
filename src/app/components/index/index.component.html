@@ -5,12 +5,28 @@
             [datasets]="datasets"
             [options]="options">
     </canvas>
+<ion-content padding>
+    <ion-icon name="analytics" style="width:40px ; height: 40px" color="primary" class="center"></ion-icon>        
+        <ion-item>
+            <ion-label>Consumo Kilovatio hora:</ion-label>
+                <ion-text color="primary">
+                        <h2>{{measurment.kwh | number : '1.1-5' }}</h2>
+                    </ion-text>
+        </ion-item>
+        <ion-item>
+            <ion-label>Dinero consumido:</ion-label>
+                <ion-text color="primary">
+                        <h2>{{measurment.value | number : '1.1-5' | currency}}</h2>
+                    </ion-text>
+        </ion-item>
+</ion-content>
 
+
+<<<<<<< HEAD
     <ion-text color="primary">
         <h2>{{measurment.kwh | number : '1.1-5' }}</h2>
     </ion-text>
+=======
+>>>>>>> 8b8d9de8184936bf49adfc40be7990c0738aa86e
 
-    <ion-text color="primary">
-        <h2>{{measurment.value | number : '1.1-5' | currency}}</h2>
-    </ion-text>
 </div>

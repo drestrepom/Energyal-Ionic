@@ -58,7 +58,7 @@ export class LoginPage implements OnInit, OnDestroy {
             if (result.ok) {
                 this.sUser.user = result;
                 this.forma.reset();
-                this.router.navigate(['/home/index']);
+                this.router.navigate(['/home/index/realTime']);
             } else {
                 this.loginFailed();
             }
@@ -83,7 +83,7 @@ export class LoginPage implements OnInit, OnDestroy {
             'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJZYXJ1bWFsIiwiX2lkIjoiNWM5NmQwYTNiMDQ0ZTIxY2M4YjFjODkzIiwibmFtZSI6IkRpZWdvIFJlc3RyZXBvIiwiZW1haWwiOiJyZXN0cmVwb21lc2FkaWVnb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ4LnA4M0o0ZTE4S2RyY3ZPT0xnZlkub3Y2VG1lNDZtRDdtbDl1SW41RHpaNVFMblVjeURueSJ9LCJpYXQiOjE1NTM1NDg4NDUsImV4cCI6MTU1MzU5MjA0NX0.YXpJyBIK6g5q52FHSTpbISezPwHDQjpgh5Wce60ANbY'
         };
         this.sUser.user = user;
-        this.router.navigate(['/home/index']);
+        this.router.navigate(['/home/index/realTime']);
     }
 
     async presentLoading() {
