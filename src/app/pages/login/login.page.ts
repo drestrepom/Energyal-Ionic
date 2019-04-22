@@ -48,18 +48,17 @@ export class LoginPage implements OnInit, OnDestroy {
 
     async login(forma: NgForm) {
         const load = await this.presentLoading();
-        console.log('value', forma.value);
         this.sUser.login({
             email: forma.value.email,
             password: forma.value.password
         }).subscribe(result => {
-            console.log(result);
-            load.dismiss();
             if (result.ok) {
                 this.sUser.user = result;
-                this.forma.reset();
                 this.router.navigate(['/home/index/realTime']);
+                this.forma.reset();
+                load.dismiss();
             } else {
+                load.dismiss();
                 this.loginFailed();
             }
         }, error => {

@@ -131,6 +131,7 @@ export class RegisterPage implements OnInit {
             this.userService.register(this.forma.value).subscribe(result => {
                 this.alerts.coloseAlert();
                 this.alerts.presentToast('Registro exitoso');
+                this.router.navigate(['/login']);
             }, error => {
                 this.alerts.coloseAlert();
                 this.presentAlertFailed(error);
