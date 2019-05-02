@@ -10,7 +10,7 @@ export class SocketService {
     myEmitter = new EventEmitter();
 
     constructor(private socket: Socket) {
-        socket.on('connect',  () => {
+        socket.on('connect', () => {
             // this.myEmitter.emit('ggggggg');
             console.log('Connected');
 
@@ -21,9 +21,9 @@ export class SocketService {
             // emiter.emit('caho');
             console.log('Disconnected');
         });
-        socket.on('measurement',  (data)  => {
+        socket.on('measurement', (data) => {
             // console.log(data);
-           this.myEmitter.emit(data);
+            this.myEmitter.emit(data);
             // console.log(data);
         });
     }
@@ -32,13 +32,11 @@ export class SocketService {
         this.myEmitter.emit(data);
     }
 
-    sendInfo(id) {
-        this.socket.emit('newSession', id);
+    newSession(id) {
+        this.socket.emit('newUserSession', id);
     }
 
-    getSaludo(id: string) {
-        this.socket.emit('saludo', id, (res) => {
-            console.log(res);
-        });
+    closeSession(id) {
+        this.socket.emit('closeUserSession', id);
     }
 }

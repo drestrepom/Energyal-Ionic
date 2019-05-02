@@ -69,7 +69,6 @@ export class LoginPage implements OnInit, OnDestroy {
     }
 
     loginDesarrollo() {
-        this.soketService.getSaludo('jejejeje');
         const user = {
             'ok': true,
             'user': {

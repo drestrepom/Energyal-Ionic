@@ -28,7 +28,7 @@ export class UserService {
         // Establecemos cabeceras
         const logInfo = this.http.post(this.url + 'user/login', user);
         logInfo.subscribe(value => {
-            this.socketService.sendInfo(value['user']._id);
+            this.socketService.newSession(value['user']._id);
         });
         return logInfo;
     }
@@ -38,6 +38,9 @@ export class UserService {
     }
 
     logOut() {
+        if (this.user) {
+            this.socketService.closeSession(this.user._id);
+        }
         this.user = null;
     }
 
