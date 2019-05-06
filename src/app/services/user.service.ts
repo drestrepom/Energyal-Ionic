@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpHandler, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IUser} from '../interfaces/IUser';
@@ -21,6 +21,8 @@ export class UserService {
 
     user = null;
 
+    userLoge = new EventEmitter();
+
     constructor(private http: HttpClient, private socketService: SocketService) {
     }
 
@@ -28,7 +30,9 @@ export class UserService {
         // Establecemos cabeceras
         const logInfo = this.http.post(this.url + 'user/login', user);
         logInfo.subscribe(value => {
+            this.userLoge.emit(true);
             this.socketService.newSession(value['user']._id);
+            console.log(this.user);
         });
         return logInfo;
     }

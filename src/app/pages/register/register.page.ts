@@ -129,11 +129,11 @@ export class RegisterPage implements OnInit {
         } else {
             this.alerts.presentLoading();
             this.userService.register(this.forma.value).subscribe(result => {
-                this.alerts.coloseAlert();
+                this.alerts.closeAlert();
                 this.alerts.presentToast('Registro exitoso');
                 this.router.navigate(['/login']);
             }, error => {
-                this.alerts.coloseAlert();
+                this.alerts.closeAlert();
                 this.presentAlertFailed(error);
             });
         }

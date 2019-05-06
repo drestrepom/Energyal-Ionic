@@ -23,7 +23,7 @@ import {IndexPage} from '../index/index.page';
 const routes: Routes = [
     {
         path: '', component: HomePage, children: [
-            {path: 'add-electrodomestic', component: AddElectrodomesticComponent},
+            {path: 'update-electrodomestic', component: AddElectrodomesticComponent},
             {path: 'user', component: UserComponent},
             {path: 'info-electrod/:id', component: InfoElctrodComponent},
             {path: 'electrodomestics', component: ElectrodomesticsComponent},

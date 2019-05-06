@@ -63,10 +63,10 @@ export class AddElectrodomesticComponent implements OnInit {
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
         this.electrodomesticService.register(electrodomestic).subscribe(result => {
-            this.alerts.coloseAlert();
+            this.alerts.closeAlert();
             this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
         }, error1 => {
-            this.alerts.coloseAlert();
+            this.alerts.closeAlert();
             let alert = '';
             if (typeof error1.error.error.errors !== 'undefined') {
                 alert = error1.error.error.errors.serial.message;

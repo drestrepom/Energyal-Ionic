@@ -36,7 +36,17 @@ export class Alerts {
         await alert.present();
     }
 
-    coloseAlert() {
+    async presentAlertMesagge(message) {
+        const alert = await this.alertController.create({
+            header: 'Mensaje',
+            message: message,
+            buttons: ['Aceptar']
+        });
+
+        await alert.present();
+    }
+
+    closeAlert() {
         this.alertController.dismiss();
     }
 }

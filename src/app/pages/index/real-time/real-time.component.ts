@@ -22,6 +22,7 @@ export class RealTimeComponent {
     constructor(private  socketService: SocketService, private alerts: Alerts) {
         this.active = true;
         this.socketService.myEmitter.subscribe((value) => {
+            // console.log(value);
             if (this.active) {
                 this.measurment = value;
                 this.datasets.forEach(function (dataset: any) {

@@ -1,3 +1,16 @@
-<p>
-  month works!
-</p>
+<div class="flex">
+  <ion-button color="primary" (click)="challengeLabels('kWh')">Kwh</ion-button>
+  <ion-button color="success" (click)="challengeLabels('money')">Dinero</ion-button>
+  <div class="flex-item">
+    <div style="display: block;">
+      <canvas baseChart width="400" height="400"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"></canvas>
+    </div>
+  </div>
+</div>

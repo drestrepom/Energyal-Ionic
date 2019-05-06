@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddElectrodomesticPage } from './add-electrodomestic.page';
+import { ParameterPage } from './parameter.page';
 
-describe('AddElectrodomesticPage', () => {
-  let component: AddElectrodomesticPage;
-  let fixture: ComponentFixture<AddElectrodomesticPage>;
+describe('ParameterPage', () => {
+  let component: ParameterPage;
+  let fixture: ComponentFixture<ParameterPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddElectrodomesticPage ],
+      declarations: [ ParameterPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddElectrodomesticPage);
+    fixture = TestBed.createComponent(ParameterPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

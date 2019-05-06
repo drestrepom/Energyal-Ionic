@@ -8,19 +8,19 @@
         <ion-text>Meta de consumo (Día):{{day.meta}}</ion-text>
         <br>
         <br>
-        <ion-progress-bar [value]="((100/day.meta) * day.value.value)/100" buffer="0.6"></ion-progress-bar>
+        <ion-progress-bar [value]="day.progress" buffer="0.6"></ion-progress-bar>
         <br>
         <br>
         <ion-text>Meta de consumo (Semana):{{week.meta}}</ion-text>
         <br>
         <br>
-        <ion-progress-bar [value]="((100/week.meta) * week.value.value)/100" buffer="0.6"></ion-progress-bar>
+        <ion-progress-bar [value]="week.progress" buffer="0.6"></ion-progress-bar>
         <br>
         <br>
-        <ion-text>Meta de consumo (Mes):{{mounth.meta}}</ion-text>
+        <ion-text>Meta de consumo (Mes):{{month.meta}}</ion-text>
         <br>
         <br>
-        <ion-progress-bar [value]="((100/mounth.meta) * mounth.value.value)/100" buffer="0.6"></ion-progress-bar>
+        <ion-progress-bar [value]="month.progress" buffer="0.6"></ion-progress-bar>
 
     </ion-list>
 

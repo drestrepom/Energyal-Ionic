@@ -9,7 +9,8 @@ import {StatsService} from '../../../services/stats.service';
     styleUrls: ['./week.component.scss'],
 })
 export class WeekComponent implements OnInit {
-
+    title: string;
+    datasets;
 
     lineChartData: ChartDataSets[] = [
         {data: [0, 0, 0, 0, 0, 0, 0], label: 'kWh'},
@@ -75,19 +76,18 @@ export class WeekComponent implements OnInit {
     lineChartType = 'line';
     @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
-    startTime = new Date();
-    endTime = new Date();
+    startTime: Date;
+    endTime: Date;
 
     ionViewWillEnter() {
-        this.startTime.setDate(this.endTime.getDate() - this.endTime.getUTCDay() );
-
-        console.log(this.startTime);
+        this.startTime = new Date();
+        this.endTime = new Date();
+        this.startTime.setDate(this.startTime.getUTCDay() - this.endTime.getUTCDay());
         const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getUTCDay())
             .subscribe(value => {
-                const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length);
-                // @ts-ignore
-                lineChartData[0] = {label: this.lineChartData[0].label, data: value.kWh};
-                this.lineChartData = lineChartData;
+                this.datasets = value;
+                console.log('values', value);
+                this.challengeLabels('money');
             });
     }
 
@@ -95,7 +95,15 @@ export class WeekComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('init');
+    }
+
+
+    challengeLabels(name) {
+        this.title = name;
+        const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length - 1);
+        // @ts-ignore
+        lineChartData[0] = {label: name, data: this.datasets[name]};
+        this.lineChartData = lineChartData;
     }
 
     randomize(): void {

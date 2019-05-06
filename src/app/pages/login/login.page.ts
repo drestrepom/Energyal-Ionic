@@ -4,6 +4,7 @@ import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import {AlertController, LoadingController} from '@ionic/angular';
 import {SocketService} from '../../services/socket.service';
+import {ParameterService} from '../../services/parameter.service';
 
 @Component({
     selector: 'app-login',
@@ -15,12 +16,12 @@ export class LoginPage implements OnInit, OnDestroy {
     // @ts-ignore
     patterns = require('../../../assets/utils/validation.patterns.json');
 
-    constructor(private sUser: UserService,
+    constructor(private userService: UserService,
                 private router: Router,
                 public alertController: AlertController,
                 public loadingController: LoadingController,
                 private soketService: SocketService) {
-        this.sUser.logOut();
+        this.userService.logOut();
         this.forma = new FormGroup({
             'email': new FormControl('', [
                 Validators.required,
@@ -43,20 +44,22 @@ export class LoginPage implements OnInit, OnDestroy {
     validation_messages = require('../../../assets/utils/validation.messages.json');
 
     ngOnInit() {
-        this.sUser.logOut();
+        this.userService.logOut();
     }
 
-    async login(forma: NgForm) {
+    async login() {
         const load = await this.presentLoading();
-        this.sUser.login({
-            email: forma.value.email,
-            password: forma.value.password
+        this.userService.login({
+            email: this.forma.value.email,
+            password: this.forma.value.password
         }).subscribe(result => {
             if (result.ok) {
-                this.sUser.user = result;
-                this.router.navigate(['/home/index/realTime']);
-                this.forma.reset();
-                load.dismiss();
+                this.userService.user = result;
+                this.router.navigate(['/home/index/realTime']).then(value => {
+                    this.forma.reset();
+                    load.dismiss();
+                    this.userService.userLoge.emit(true);
+                });
             } else {
                 load.dismiss();
                 this.loginFailed();
@@ -68,20 +71,28 @@ export class LoginPage implements OnInit, OnDestroy {
         });
     }
 
-    loginDesarrollo() {
-        const user = {
-            'ok': true,
-            'user': {
-                'city': 'Yarumal',
-                '_id': '5c96d0a3b044e21cc8b1c893',
-                'name': 'Diego Restrepo',
-                'email': 'restrepomesadiego@gmail.com',
-                'password': '$2b$10$8.p83J4e18KdrcvOOLgfY.ov6Tme46mD7ml9uIn5DzZ5QLnUcyDny'
-            },
-            'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImNpdHkiOiJZYXJ1bWFsIiwiX2lkIjoiNWM5NmQwYTNiMDQ0ZTIxY2M4YjFjODkzIiwibmFtZSI6IkRpZWdvIFJlc3RyZXBvIiwiZW1haWwiOiJyZXN0cmVwb21lc2FkaWVnb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ4LnA4M0o0ZTE4S2RyY3ZPT0xnZlkub3Y2VG1lNDZtRDdtbDl1SW41RHpaNVFMblVjeURueSJ9LCJpYXQiOjE1NTM1NDg4NDUsImV4cCI6MTU1MzU5MjA0NX0.YXpJyBIK6g5q52FHSTpbISezPwHDQjpgh5Wce60ANbY'
-        };
-        this.sUser.user = user;
-        this.router.navigate(['/home/index/realTime']);
+    async loginDesarrollo() {
+        const load = await this.presentLoading();
+        this.userService.login({
+            email: 'restrepomesadiego@gmail.com',
+            password: '1193120855rD'
+        }).subscribe(result => {
+            if (result.ok) {
+                this.userService.user = result;
+                this.router.navigate(['/home/index/realTime']).then(value => {
+                    this.forma.reset();
+                    load.dismiss();
+                    this.userService.userLoge.emit(true);
+                });
+            } else {
+                load.dismiss();
+                this.loginFailed();
+            }
+        }, error => {
+            console.log(error);
+            this.alertController.dismiss();
+            this.loginFailed();
+        });
     }
 
     async presentLoading() {

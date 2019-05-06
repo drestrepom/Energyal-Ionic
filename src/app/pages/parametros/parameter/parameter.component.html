@@ -1,0 +1,27 @@
+<ion-content padding>
+    <ion-icon [name]="iconName" style="width: 290px; height: 250px" color="primary" class="center"></ion-icon>
+    <br>
+    <form [formGroup]="forma" novalidate (ngSubmit)="guardar()">
+        <ion-item>
+            <ion-avatar slot="start">
+                <ion-icon name="wallet" item-center style="width:40px ; height: 40px" color="primary"></ion-icon>
+            </ion-avatar>
+            <ion-label position="floating">Dinero</ion-label>
+            <ion-input type="number" formControlName="money" (focusin)="inFocus('money')"
+                       (focusout)="outFocus('money')"></ion-input>
+        </ion-item>
+
+        <br>
+
+        <ion-item>
+            <ion-avatar slot="start">
+                <ion-icon name="flash" item-center style="width:40px ; height: 40px" color="primary"></ion-icon>
+            </ion-avatar>
+            <ion-label class="tamaño" position="floating">kWh</ion-label>
+            <ion-input class="tamaño" type="number" formControlName="kwh" (focusin)="inFocus('kwh')"
+                       (focusout)="outFocus('kwh')"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button color="success" expand="block" type="submit">Actualizar</ion-button>
+    </form>
+</ion-content>

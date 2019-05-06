@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {StatsService} from '../../../services/stats.service';
-import {ChartDataSets, ChartOptions} from 'chart.js';
+import {ChartDataSets, ChartOptions, ScaleTitleOptions} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
 
 @Component({
@@ -10,9 +10,11 @@ import {BaseChartDirective, Color, Label} from 'ng2-charts';
 })
 export class DayComponent implements OnInit {
 
-
+    title = 'money';
+    datasets;
+    yTitle: ScaleTitleOptions;
     lineChartData: ChartDataSets[] = [
-        {data: [0, 0, 0, 0, 0, 0, 0], label: 'kWh'},
+        {data: [0, 0, 0, 0, 0, 0, 0], label: this.title},
     ];
     lineChartLabels: Label[] = ['', '', '', '', '', '', ''];
     lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -85,19 +87,21 @@ export class DayComponent implements OnInit {
     lineChartType = 'line';
     @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
-    startTime = new Date();
-    endTime = new Date();
+    startTime: Date;
+    endTime: Date;
 
     ionViewWillEnter() {
-        this.lineChartLabels = this.statsService.labelsHours();
+        this.startTime = new Date();
+        this.endTime = new Date();
         console.log(new Date());
         this.startTime.setHours(0, 0, 0);
+        this.endTime.setHours(this.endTime.getHours() + 1, 0, 0);
+        this.lineChartLabels = this.statsService.labelsHours(this.endTime);
         const day = this.statsService.datesUser(this.startTime, this.endTime, this.endTime.getHours())
             .subscribe(value => {
-                const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length - 1);
-                // @ts-ignore
-                lineChartData[0] = {label: this.lineChartData[0].label, data: value.kWh};
-                this.lineChartData = lineChartData;
+                this.datasets = value;
+                console.log(value);
+                this.challengeLabels('money');
             });
     }
 
@@ -108,20 +112,20 @@ export class DayComponent implements OnInit {
         console.log('init');
     }
 
-    randomize(): void {
-        for (let i = 0; i < this.lineChartData.length; i++) {
-            for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-                this.lineChartData[i].data[j] = this.generateNumber(i);
-            }
-        }
-        this.chart.update();
-    }
 
-    private generateNumber(i: number) {
-        return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+    challengeLabels(name) {
+        this.title = name;
+        const lineChartData: ChartDataSets[] = new Array(this.lineChartData.length - 1);
+        // @ts-ignore
+        lineChartData[0] = {label: name, data: this.datasets[name]};
+        this.lineChartData = lineChartData;
     }
-
     // events
+
+    setLabels() {
+
+    }
+
     chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {
         console.log(event, active);
     }
@@ -135,15 +139,6 @@ export class DayComponent implements OnInit {
         this.chart.hideDataset(1, !isHidden);
     }
 
-    pushOne() {
-        this.lineChartData.forEach((x, i) => {
-            const num = this.generateNumber(i);
-            const data: number[] = x.data as number[];
-            data.push(num);
-        });
-        this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-    }
-
     changeColor() {
         this.lineChartColors[2].borderColor = 'green';
         this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
@@ -153,5 +148,4 @@ export class DayComponent implements OnInit {
         this.lineChartLabels[2] = ['1st Line', '2nd Line'];
         // this.chart.update();
     }
-
 }

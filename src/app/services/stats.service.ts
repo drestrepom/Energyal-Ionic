@@ -44,47 +44,33 @@ export class StatsService {
         return this.http.post(this.url + 'stats', body);
     }
 
-    labelsHours() {
-        const endTime = new Date();
-        endTime.setHours(endTime.getHours() + 1, 0, 0);
-        const labels = [];
-        for (let i = 0; i < endTime.getHours(); i++) {
-            const element = i < 12 ? `${i} am` : `${i - 12} pm`;
-            labels.push(element);
-        }
-        // const startTime = new Date();
-
-        // startTime.setHours(0, 0, 0);
-        // const length = endTime.getHours();
-        // const labels = new Array(length);
-        // const datesUser = [];
-        // const div = (endTime.getTime() - startTime.getTime()) / length;
-        // for (let i = 0; i <= length; i++) {
-        //     const itemDate = new Date(startTime.getTime() + (i * div));
-        //     datesUser.push(itemDate['getUTCHours']());
-        // }
-        return labels;
-    }
-
-    labelsMounth(start: Date, end: Date, length: number) {
-        const labels = new Array(length / 2);
-        const dates = [];
-        const div = (end.getTime() - start.getTime()) / length;
-        for (let i = 0; i <= length; i++) {
-            const itemDate = new Date(start.getTime() + (i * div));
-            dates.push(itemDate['getUTCHours']());
-        }
-        return dates;
-    }
-
     sumUser(start: Date, end: Date):
         Observable<any> {
-        console.log(end);
         const body = {
             startDate: start,
             endDate: end,
             user: this.userService.user.user._id,
         };
         return this.http.post(this.url + 'stats/sum/user', body);
+    }
+
+    labelsMonth(endtime?) {
+        const endTime = endtime || new Date();
+        const labels = [];
+        for (let i = 1; i < endTime.getDate() + 1; i++) {
+            labels.push(i);
+        }
+        return labels;
+    }
+
+    labelsHours(endtime?) {
+        const endTime = endtime || new Date();
+        endTime.setHours(endTime.getHours(), 0, 0);
+        const labels = [];
+        for (let i = 0; i < endTime.getHours(); i++) {
+            const element = i < 12 ? `${i} am` : `${i - 12} pm`;
+            labels.push(element);
+        }
+        return labels;
     }
 }
