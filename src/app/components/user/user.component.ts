@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
                             if (value['ok']) {
                                 this.alerts.presentToast('Contraseña cambiada');
                             } else {
-                                this.alerts.presentToast('Contraseña incorrescta', 3000);
+                                this.alerts.presentToast('Contraseña incorrecta', 3000);
                             }
                         }).catch(reason => {
 

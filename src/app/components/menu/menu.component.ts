@@ -21,12 +21,12 @@ export class MenuComponent implements OnInit {
 // =======
     appMenu = [
         {title: 'Home', url: 'index', icon: 'home'},
-        {title: 'Agregar Dispositivo.', url: 'update-electrodomestic', icon: 'update-circle-outline'},
+        {title: 'Agregar Dispositivo.', url: 'update-electrodomestic', icon: 'add-circle-outline'},
         // {title: 'Info. Electrodomestico', url: 'info-electrod', icon: 'information-circle'},
         {title: 'Usuario', url: 'user', icon: 'contact'},
         {title: 'Estadisticas', url: 'stats/day', icon: 'stats'},
         {title: 'Electrodomésticos', url: 'electrodomestics', icon: 'list'},
-        {title: 'Parámetros', url: 'parametros/day', icon: 'calculator'},
+        {title: 'Mis metas', url: 'parametros/day', icon: 'calculator'},
         {title: 'Salir', url: '/login', icon: 'power'}
     ];
 
