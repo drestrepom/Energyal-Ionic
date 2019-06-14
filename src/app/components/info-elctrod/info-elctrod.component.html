@@ -48,11 +48,11 @@
         </ion-item>
     </ion-text>
 <br>
-    <ion-button color="danger" expand="full">Eliminar</ion-button>
+    <ion-button [color]="onOffButton.color" expand="full" (click)="onOff()">{{onOffButton.text}}</ion-button>
 
-    <ion-virtual-scroll [items]="electrodomestico.users">
+    <!-- <ion-virtual-scroll [items]="electrodomestico.users">
         <ion-item *virtualItem="let user">
             {{ item.user.name }}
         </ion-item>
-    </ion-virtual-scroll>
+    </ion-virtual-scroll> -->
 </ion-content>

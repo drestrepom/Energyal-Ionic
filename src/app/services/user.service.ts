@@ -5,7 +5,7 @@ import {IUser} from '../interfaces/IUser';
 import {RequestOptions} from '@angular/http';
 import {Body} from '@angular/http/src/body';
 
-import * as emailExistence from 'email-existence';
+// import * as emailExistence from 'email-existence';
 import {AppModule} from '../app.module';
 import {FormControl} from '@angular/forms';
 import {URL_API} from '../../config/config';

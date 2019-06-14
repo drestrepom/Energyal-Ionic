@@ -63,19 +63,21 @@ export class AddElectrodomesticComponent implements OnInit {
         console.log('forma', this.forma.value);
         console.log('electrodomestic', electrodomestic);
         this.electrodomesticService.register(electrodomestic).subscribe(result => {
+            console.log(result);
             this.alerts.closeAlert();
             this.alerts.presentToast('Tu electrodoméstico ha sido registrado correctamente');
         }, error1 => {
+            console.log(error1)
             this.alerts.closeAlert();
-            let alert = '';
-            if (typeof error1.error.error.errors !== 'undefined') {
-                alert = error1.error.error.errors.serial.message;
-            } else if (typeof error1.error.error !== 'undefined') {
-                alert = error1.error.error;
-            } else {
-                alert = 'no se ha encontrado';
-            }
-            this.presentAlertFailed(alert);
+            // let alert = '';
+            // if (typeof error1.error.error.errors !== 'undefined') {
+            //     alert = error1.error.error.errors.serial.message;
+            // } else if (typeof error1.error.error !== 'undefined') {
+            //     alert = error1.error.error;
+            // } else {
+            //     alert = 'no se ha encontrado';
+            // }
+            // this.presentAlertFailed(alert);
         });
     }
 

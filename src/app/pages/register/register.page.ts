@@ -43,6 +43,9 @@ export class RegisterPage implements OnInit {
                     // Validators.required
                 ], updateOn: 'blur'
             }),
+            'stratum': new FormControl(null, [
+                Validators.required
+            ]),
             'email': new FormControl('', {
                 validators: [
                     // Validators.required,

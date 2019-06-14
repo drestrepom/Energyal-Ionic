@@ -11,20 +11,13 @@ export class SocketService {
 
     constructor(private socket: Socket) {
         socket.on('connect', () => {
-            // this.myEmitter.emit('ggggggg');
             console.log('Connected');
-
         });
-
         socket.on('disconnect', function () {
-            // const emiter = this.myEmitter;
-            // emiter.emit('caho');
             console.log('Disconnected');
         });
         socket.on('measurement', (data) => {
-            // console.log(data);
             this.myEmitter.emit(data);
-            // console.log(data);
         });
     }
 

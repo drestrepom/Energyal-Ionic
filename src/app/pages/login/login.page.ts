@@ -75,7 +75,7 @@ export class LoginPage implements OnInit, OnDestroy {
         const load = await this.presentLoading();
         this.userService.login({
             email: 'pruebas@gmail.com',
-            password: '123456789'
+            password: '1234rD..'
         }).subscribe(result => {
             if (result.ok) {
                 this.userService.user = result;
