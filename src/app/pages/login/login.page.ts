@@ -6,6 +6,7 @@ import {AlertController, LoadingController} from '@ionic/angular';
 import {SocketService} from '../../services/socket.service';
 import {ParameterService} from '../../services/parameter.service';
 
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
@@ -20,7 +21,9 @@ export class LoginPage implements OnInit, OnDestroy {
                 private router: Router,
                 public alertController: AlertController,
                 public loadingController: LoadingController,
-                private soketService: SocketService) {
+                private soketService: SocketService,
+// tslint:disable-next-line: no-shadowed-variable
+                ) {
         this.userService.logOut();
         this.forma = new FormGroup({
             'email': new FormControl('', [
@@ -46,6 +49,7 @@ export class LoginPage implements OnInit, OnDestroy {
     ngOnInit() {
         this.userService.logOut();
     }
+
 
     async login() {
         const load = await this.presentLoading();
@@ -74,8 +78,8 @@ export class LoginPage implements OnInit, OnDestroy {
     async loginDesarrollo() {
         const load = await this.presentLoading();
         this.userService.login({
-            email: 'pruebas@gmail.com',
-            password: '1234rD..'
+            email: 'darkhell2241@gmail.com',
+            password: '123456Dm'
         }).subscribe(result => {
             if (result.ok) {
                 this.userService.user = result;

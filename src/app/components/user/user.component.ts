@@ -3,6 +3,7 @@ import {UserService} from '../../services/user.service';
 import {IUser} from '../../interfaces/IUser';
 import {AlertController, ToastController} from '@ionic/angular';
 import {Alerts} from '../../../utils/alerts';
+import { ThemeSwitcherService } from '../../services/theme-switcher.service';
 
 @Component({
     selector: 'app-user',
@@ -15,10 +16,15 @@ export class UserComponent implements OnInit {
     constructor(private userService: UserService,
                 private  alertController: AlertController,
                 private toastController: ToastController,
-                private alerts: Alerts) {
+                private alerts: Alerts,
+                public ThemeSwitcherService: ThemeSwitcherService) {
     }
 
     ngOnInit() {
+    }
+
+    tema() {
+        this.ThemeSwitcherService.setTheme('first');
     }
 
     challeng() {
