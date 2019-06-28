@@ -28,7 +28,7 @@ export class ThemeSwitcherService {
 
     this.themes = [
       {
-        'name': "first",
+        'name': "dark",
         "styles": [
 
           { "themeVariable": "--ion-color-primary", "value": "#2f32a0" },
@@ -102,6 +102,75 @@ export class ThemeSwitcherService {
           { "themeVariable": "--ion-color-dark-shade", "value": "#190e60" },
           { "themeVariable": "--ion-color-dark-tint", "value": "#2e256d" }
 
+        ]
+      },
+      {
+        'name': "ligth",
+        'styles': [
+         {"themeVariable": "--ion-color-primary", "value": "#0ec254"},
+         {"themeVariable": "--ion-color-primary-rgb", "value": "56, 128, 255"},
+         {"themeVariable": "--ion-color-primary-contrast", "value": "#ffffff"},
+         {"themeVariable": "--ion-color-primary-contrast-rgb", "value": "255, 255, 255"},
+         {"themeVariable": "--ion-color-primary-shade", "value": "#3171e0"},
+         {"themeVariable": "--ion-color-primary-tint", "value": "#4c8dff"},
+         {"themeVariable": "--ion-background-color", "value": "#FFFFFF"},,
+         {"themeVariable": "--ion-text-color", "value": "#000000"},
+
+          {"themeVariable": "--ion-color-secondary", "value": "#72E88D"},
+          {"themeVariable": "--ion-color-secondary-rgb", "value": "12, 209, 232"},
+          {"themeVariable": "--ion-color-secondary-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-secondary-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-secondary-shade", "value": "#0bb8cc"},
+          {"themeVariable": "--ion-color-secondary-tint", "value": "#24d6ea"},
+
+          {"themeVariable": "--ion-color-tertiary", "value": "#0ec254"},
+          {"themeVariable": "--ion-color-tertiary-rgb", "value": "112, 68, 255"},
+          {"themeVariable": "--ion-color-tertiary-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-tertiary-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-tertiary-shade", "value": "#633ce0"},
+          {"themeVariable": "--ion-color-tertiary-tint", "value": "#7e57ff"},
+
+          {"themeVariable": "--ion-color-success", "value": "#0ec254"},
+          {"themeVariable": "--ion-color-success-rgb", "value": "16, 220, 96"},
+          {"themeVariable": "--ion-color-success-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-success-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-success-shade", "value": "#0ec254"},
+          {"themeVariable": "--ion-color-success-tint", "value": "#28e070"},
+
+          {"themeVariable": "--ion-color-warning", "value": "#ffce00"},
+          {"themeVariable": "--ion-color-warning-rgb", "value": "255, 206, 0"},
+          {"themeVariable": "--ion-color-warning-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-warning-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-warning-shade", "value": "#e0b500"},
+          {"themeVariable": "--ion-color-warning-tint", "value": "#ffd31a"},
+          /** danger **/
+          {"themeVariable": "--ion-color-danger", "value": "#f04141"},
+          {"themeVariable": "--ion-color-danger-rgb", "value": "245, 61, 61"},
+          {"themeVariable": "--ion-color-danger-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-danger-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-danger-shade", "value": "#d33939"},
+          {"themeVariable": "--ion-color-danger-tint", "value": "#f25454"},
+          /** dark **/
+          {"themeVariable": "--ion-color-dark", "value": "#222428"},
+          {"themeVariable": "--ion-color-dark-rgb", "value": "34, 34, 34"},
+          {"themeVariable": "--ion-color-dark-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-dark-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-dark-shade", "value": "#1e2023"},
+          {"themeVariable": "--ion-color-dark-tint", "value": "#383a3e"},
+          
+          {"themeVariable": "--ion-color-medium", "value": "#989aa2"},
+          {"themeVariable": "--ion-color-medium-rgb", "value": "152, 154, 162"},
+          {"themeVariable": "--ion-color-medium-contrast", "value": "#ffffff"},
+          {"themeVariable": "--ion-color-medium-contrast-rgb", "value": "255, 255, 255"},
+          {"themeVariable": "--ion-color-medium-shade", "value": "#86888f"},
+          {"themeVariable": "--ion-color-medium-tint", "value": "#a2a4ab"},
+          /** light **/
+          {"themeVariable": "--ion-color-light", "value": "#f4f5f8"},
+          {"themeVariable": "--ion-color-light-rgb", "value": "244, 244, 244"},
+          {"themeVariable": "--ion-color-light-contrast", "value": "#000000"},
+          {"themeVariable": "--ion-color-light-contrast-rgb", "value": "0, 0, 0"},
+          {"themeVariable": "--ion-color-light-shade", "value": "#d7d8da"},
+          {"themeVariable": "--ion-color-light-tint", "value": "#f5f6f9"}
         ]
       }
     ];

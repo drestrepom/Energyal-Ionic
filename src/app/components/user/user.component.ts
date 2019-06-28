@@ -19,12 +19,17 @@ export class UserComponent implements OnInit {
                 private alerts: Alerts,
                 public ThemeSwitcherService: ThemeSwitcherService) {
     }
+public tgTheme: boolean;
 
     ngOnInit() {
     }
 
     tema() {
-        this.ThemeSwitcherService.setTheme('first');
+        if (this.tgTheme === false) {
+            this.ThemeSwitcherService.setTheme('ligth');
+        } else{
+            this.ThemeSwitcherService.setTheme('dark');
+        }
     }
 
     challeng() {
